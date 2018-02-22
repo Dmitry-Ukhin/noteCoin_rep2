@@ -1,0 +1,29 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<modelVersion>4.0.0</modelVersion>
+
+	<build>
+		<outputDirectory>${basedir}/out</outputDirectory>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+		<defaultGoal>install</defaultGoal>
+
+		<sourceDirectory>${basedir}/src/main/java</sourceDirectory>
+	</build>
+	
+	<groupId>noteCoin</groupId>
+	<artifactId>noteCoin</artifactId>
+	<packaging>war</packaging>
+	<version>0.2.0-TESTS b.13</version>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>LATEST</version>
+		</dependency>
+	</dependencies>
+
+	<reporting>
+		<outputDirectory>${project.build.directory}/site</outputDirectory>
+	</reporting>
+
+</project>

@@ -1,0 +1,14 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
+	<display-name>noteCoin</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	<servlet>
+		<servlet-name>start_page</servlet-name>
+		<servlet-class>com.examples.StartPage</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>start_page</servlet-name>
+		<url-pattern>/hello</url-pattern>
+	</servlet-mapping>
+</web-app>
