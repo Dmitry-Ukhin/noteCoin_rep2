@@ -12,7 +12,7 @@
 	<groupId>noteCoin</groupId>
 	<artifactId>noteCoin</artifactId>
 	<packaging>war</packaging>
-	<version>0.2.0-TESTS_build.14</version>
+	<version>0.2.0-TESTS_build.21</version>
 
 	<dependencies>
 		<dependency>
