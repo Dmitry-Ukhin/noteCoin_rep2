@@ -5,20 +5,12 @@
 	</welcome-file-list>
 
 	<servlet>
-		<servlet-name>start_page</servlet-name>
-		<servlet-class>com.examples.StartPage</servlet-class>
+		<servlet-name>saver</servlet-name>
+		<servlet-class>com.noteCoin.controllers.SaveTransaction</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>start_page</servlet-name>
-		<url-pattern>/hello</url-pattern>
+		<servlet-name>saver</servlet-name>
+		<url-pattern>/save_tran</url-pattern>
 	</servlet-mapping>
 
-	<servlet>
-		<servlet-name>responseJS</servlet-name>
-		<servlet-class>com.examples.RespJS</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>responseJS</servlet-name>
-		<url-pattern>/req_js</url-pattern>
-	</servlet-mapping>
 </web-app>
