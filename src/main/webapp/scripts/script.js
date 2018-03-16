@@ -3,23 +3,23 @@
  */
 function SaveTran() {
     var xhr = new XMLHttpRequest();
-    var strReq = "/save_tran";
+    var request = "/save_tran";
     var http_method = "POST";
     var isAsynchr = true;
 
     /*
     Get data from form
      */
-    var form = document.getElementsByName("type");
-    for (var i = 0; i < form.length; i++){
-        if (form[i].type === "radio" && form[i].checked){
-            var type = form[i].value;
+    var element = document.getElementsByName("type");
+    for (var i = 0; i < element.length; i++){
+        if (element[i].type === "radio" && element[i].checked){
+            var type = element[i].value;
         }
     }
-    form = document.getElementsByName("sum");
-    var sum = form[0].value;
-    form = document.getElementsByName("description");
-    var descr = form[0].value;
+    element = document.getElementsByName("sum");
+    var sum = element[0].value;
+    element = document.getElementsByName("description");
+    var descr = element[0].value;
 
     /*
     Construct POST request
@@ -29,7 +29,7 @@ function SaveTran() {
     /*
     Send request
      */
-    xhr.open(http_method, strReq, isAsynchr);
+    xhr.open(http_method, request, isAsynchr);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     if (xhr.readyState === 1) {
         xhr.send(data);
