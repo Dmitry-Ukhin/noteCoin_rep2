@@ -6,7 +6,6 @@ function showTrans() {
     var request = "/show";
     var http_method = "POST";
     var isAsynchr = true;
-    var resp;
 
     /*
     Get data from form
@@ -43,8 +42,7 @@ function showTrans() {
      */
     xhr.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
-            resp = xhr.responseText;
-            alert(resp);
+            insertResp(xhr.responseText);
         }
     };
 }
@@ -62,14 +60,57 @@ function getDate(element) {
     element = document.getElementById("year");
     year = element.value;
     element = document.getElementById("month");
-    month = element.value;
+    if (element.value < 10){
+        month = "0"+element.value;
+    }else{
+        month = element.value;
+    }
     element = document.getElementById("day");
-    day = element.value;
+    if (element.value < 10){
+        day = "0"+element.value;
+    }else{
+        day = element.value;
+    }
 
     date = year + "-" + month + "-" + day;
     return date;
 }
 
 function insertResp(resp) {
+    var type = "null", date = "null", descr = "null", sum = "null";
+    var transaction;
+    var start = 0, end = 0;
 
+    for (var i = 1 ; start < resp.length; i++){
+        end = resp.indexOf("}") + 1;
+        transaction = resp.substring(start, end);
+        start = end;
+
+        JSON.parse(resp, function (k, v) {
+            if (k === "type"){
+                type = v;
+            }else if (k === "sum"){
+                sum = v;
+            }else if (k === "date"){
+                date = v;
+            }else if (k === "descr"){
+                descr = v;
+            }
+        });
+        alert("type=" + type + " sum=" + sum + " date=" + date + " descr=" + descr);
+
+        var table = document.getElementById("table");
+        var row = table.insertRow(i);
+
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+
+        cell1.innerHTML = type;
+        cell2.innerHTML = sum;
+        cell3.innerHTML = date;
+        cell4.innerHTML = descr;
+        alert(i);
+    }
 }
