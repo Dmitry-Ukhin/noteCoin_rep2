@@ -12,10 +12,12 @@ import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.swing.text.html.HTML.Tag.HEAD;
+
 public class WorkWithMySQL implements WorkWithDB{
 
-    EntityManagerFactory emf;
-    EntityManager em;
+    private EntityManagerFactory emf;
+    private EntityManager em;
 
     public WorkWithMySQL() {
         emf = Persistence.createEntityManagerFactory("noteCoinDB");
@@ -26,17 +28,22 @@ public class WorkWithMySQL implements WorkWithDB{
      * TODO: overload for upload list Transactions to DB
      * @param transaction
      */
-    public void saveToDB(Transaction transaction) {
+    public Integer saveToDB(Transaction transaction) {
+        Integer status;
+
         em.getTransaction().begin();
         try {
             em.persist(transaction);//I save my model of Transaction to db
             em.getTransaction().commit();
+            status = 1;
         }catch (Exception ex){
             em.getTransaction().rollback();
+            status = 0;
         }finally {
             em.close();
             emf.close();
         }
+        return status;
     }
 
     public List<Transaction> loadFromDB(String requestToDB) {

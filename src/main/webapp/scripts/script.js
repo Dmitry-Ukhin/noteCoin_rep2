@@ -1,23 +1,49 @@
-function sendRec() {
-	var xhr = new XMLHttpRequest();
+/**
+ * Last change 16.03.18 20:40
+ */
+function SaveTran() {
+    var xhr = new XMLHttpRequest();
+    var request = "/save_tran";
+    var http_method = "POST";
+    var isAsynchr = true;
 
-	var req = '/noteCoin-0.1b.40/query?command_line=' + document.forms["start_form"].elements["command_line"].value;
+    /*
+    Get data from form
+     */
+    var element = document.getElementsByName("type");
+    for (var i = 0; i < element.length; i++){
+        if (element[i].type === "radio" && element[i].checked){
+            var type = element[i].value;
+        }
+    }
+    element = document.getElementsByName("sum");
+    var sum = element[0].value;
+    element = document.getElementsByName("description");
+    var descr = element[0].value;
 
-	xhr.open('GET', req, false);
+    /*
+    Construct POST request
+     */
+    var data = "type=" +type+ "&sum=" +sum+ "&description=" +descr;
 
-	xhr.send();
 
+    /*
+    Send request
+     */
+    xhr.open(http_method, request, isAsynchr);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    if (xhr.readyState === 1) {
+        xhr.send(data);
+    }else{
+        alert("readyState != 1");
+    }
 
-	if(xhr.status != 200) {
-		alert(xhr.status + ': ' + xhr.statusText);
-
-		alert(req);	
-	}else{
-		writeResponse(xhr.responseText);
-	}
-}
-
-function writeResponse(resp){
-	var blockToResponse = document.getElementById("response");
-	blockToResponse.innerHTML = resp;
+    /*
+    Get response and change DOM
+     */
+    xhr.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            document.getElementById("p1").innerHTML = this.responseText;
+        }
+    };
 }

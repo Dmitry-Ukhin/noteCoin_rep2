@@ -8,7 +8,8 @@ import com.noteCoin.models.Transaction;
 import java.util.List;
 
 public interface WorkWithDB {
-    public void saveToDB(Transaction transaction);
+
+    public Integer saveToDB(Transaction transaction);
 
     public List<Transaction> loadFromDB(String requestToDB);
 }
