@@ -1,5 +1,5 @@
 /**
- * last change 18.03.18 16:53
+ * last change 18.03.18 18:10
  */
 package com.noteCoin.controllers;
 
@@ -19,7 +19,6 @@ import java.util.List;
 public class ShowTransactions extends HttpServlet{
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter writer;
         String type,
                date,
                descr;
@@ -87,14 +86,12 @@ public class ShowTransactions extends HttpServlet{
                 requestToDB = requestToDB.substring(startIndex, lastIndex);
             }
         }
-        System.out.println(requestToDB + " deleteWhere=" + deleteWhere);
 
         if (deleteWhere == -3){
             int startIndex = 0;
             int lastIndex = requestToDB.lastIndexOf("WHERE");
             requestToDB = requestToDB.substring(startIndex, lastIndex);
         }
-//        System.out.println(requestToDB);
 
         /*
         Get data from data base
@@ -107,7 +104,7 @@ public class ShowTransactions extends HttpServlet{
         if (transactionList != null) {
             for (Transaction tr : transactionList) {
                 json = gson.toJson(tr);
-                resp.getWriter().println(json);
+                resp.getWriter().printf(json);
             }
         }else{
             resp.getWriter().println("Download is fail");

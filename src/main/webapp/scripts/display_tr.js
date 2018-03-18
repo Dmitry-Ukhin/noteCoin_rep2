@@ -1,5 +1,5 @@
 /**
- * last change 18.03.18 16:53
+ * last change 18.03.18 18:09
  */
 function showTrans() {
     var type, date, descr, data;
@@ -79,19 +79,18 @@ function getDate(element) {
 }
 
 function insertResp(resp) {
-    resp.replace(" ");
+
     var type = "null", date = "null", descr = "null", sum = "null";
     var transaction;
     var start = 0, end = 0;
 
-    // var table = document.getElementById("table");
-    // var rows = table.rows;
-    // for (var i = 1; i < 20; i++){
-    //     // if (rows.cells[i])
-    //
-    //     var rem = rows.cells[i].remove;
-    //     rem.innerHTML = rem;
-    // }
+    var table = document.getElementById("table");
+    if (table.rows.length > 1){
+        for (var i = 1; i < table.rows.length; ){
+            var row = table.rows[i];
+            row.parentNode.removeChild(row);
+        }
+    }
 
     for (var i = 1 ; start < resp.length || i < 20; i++){
         end = resp.indexOf("}", start) + 1;
@@ -116,6 +115,5 @@ function insertResp(resp) {
         cell2.innerHTML = sum;
         cell3.innerHTML = date;
         cell4.innerHTML = descr;
-        alert(i);
     }
 }
