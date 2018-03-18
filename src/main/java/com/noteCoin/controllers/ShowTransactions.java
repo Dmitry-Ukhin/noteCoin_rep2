@@ -1,5 +1,5 @@
 /**
- * last change 17.03.18 14:56
+ * last change 18.03.18 16:53
  */
 package com.noteCoin.controllers;
 
@@ -32,39 +32,69 @@ public class ShowTransactions extends HttpServlet{
         Get arguments from request
          */
         type = req.getParameter("type");
-        if (type.equals("all")){
+        if (type.equals("all") || type.equals("undefined")){
             type = null;
         }
         date = req.getParameter("date");
+        if (date.equals("none-none-none")){
+            date = null;
+        } else if(date.contains("none")){
+            date = date.replaceAll("none", "%");
+        }
         descr = req.getParameter("description");
+        if (descr.equals("")){
+            descr = null;
+        }
         /*
         We have arguments?
          */
+        Integer deleteWhere = 0;
         if (type != null){
             haveType = true;
+        }else{
+            deleteWhere--;
         }
         if (date != null){
             haveDate = true;
+        }else{
+            deleteWhere--;
         }
         if (descr != null){
             haveDescr = true;
+        }else{
+            deleteWhere--;
         }
+
 
         /*
         Build request to DataBase
          */
-        if (haveType){
-            requestToDB += "Tr.type LIKE \'" +type+ "\' AND ";
+        if (haveType == true){
+            requestToDB += "Tr.type LIKE \'" +type+ "%\' AND ";
         }
-        if (haveDate){
+        if (haveDate == true){
             requestToDB += "Tr.date LIKE \'" +date+ "%\' AND ";
+            if (requestToDB.contains("%%")){
+                requestToDB = requestToDB.replaceAll("%%", "%");
+            }
         }
-        if (haveDescr){
-            requestToDB += "Tr.description LIKE \'" +descr+ "%\'";
+        if (haveDescr == true){
+            requestToDB += "Tr.descr LIKE \'" +descr+ "%\'";
+        }else{
+            if (requestToDB.contains("AND")) {
+                int startIndex = 0;
+                int lastIndex = requestToDB.lastIndexOf("AND");
+                requestToDB = requestToDB.substring(startIndex, lastIndex);
+            }
         }
-        int startIndex = 0;
-        int lastIndex = requestToDB.lastIndexOf("AND");
-        requestToDB = requestToDB.substring(startIndex, lastIndex);
+        System.out.println(requestToDB + " deleteWhere=" + deleteWhere);
+
+        if (deleteWhere == -3){
+            int startIndex = 0;
+            int lastIndex = requestToDB.lastIndexOf("WHERE");
+            requestToDB = requestToDB.substring(startIndex, lastIndex);
+        }
+//        System.out.println(requestToDB);
 
         /*
         Get data from data base
@@ -82,8 +112,5 @@ public class ShowTransactions extends HttpServlet{
         }else{
             resp.getWriter().println("Download is fail");
         }
-
-
-
     }
 }

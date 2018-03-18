@@ -1,5 +1,5 @@
 /**
- * last change 17.03.18 01:20
+ * last change 18.03.18 16:53
  */
 function showTrans() {
     var type, date, descr, data;
@@ -59,12 +59,14 @@ function getDate(element) {
      */
     element = document.getElementById("year");
     year = element.value;
+
     element = document.getElementById("month");
     if (element.value < 10){
         month = "0"+element.value;
     }else{
         month = element.value;
     }
+
     element = document.getElementById("day");
     if (element.value < 10){
         day = "0"+element.value;
@@ -77,27 +79,30 @@ function getDate(element) {
 }
 
 function insertResp(resp) {
+    resp.replace(" ");
     var type = "null", date = "null", descr = "null", sum = "null";
     var transaction;
     var start = 0, end = 0;
 
-    for (var i = 1 ; start < resp.length; i++){
-        end = resp.indexOf("}") + 1;
+    // var table = document.getElementById("table");
+    // var rows = table.rows;
+    // for (var i = 1; i < 20; i++){
+    //     // if (rows.cells[i])
+    //
+    //     var rem = rows.cells[i].remove;
+    //     rem.innerHTML = rem;
+    // }
+
+    for (var i = 1 ; start < resp.length || i < 20; i++){
+        end = resp.indexOf("}", start) + 1;
         transaction = resp.substring(start, end);
         start = end;
 
-        JSON.parse(resp, function (k, v) {
-            if (k === "type"){
-                type = v;
-            }else if (k === "sum"){
-                sum = v;
-            }else if (k === "date"){
-                date = v;
-            }else if (k === "descr"){
-                descr = v;
-            }
-        });
-        alert("type=" + type + " sum=" + sum + " date=" + date + " descr=" + descr);
+        var json = JSON.parse(transaction);
+        type = json.type;
+        sum = json.sum;
+        date = json.date;
+        descr = json.descr;
 
         var table = document.getElementById("table");
         var row = table.insertRow(i);
