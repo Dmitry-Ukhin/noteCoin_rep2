@@ -1,5 +1,5 @@
 /**
- * last change 12.03.18 20:12
+ * last change 20.03.18 01:52
  */
 package com.noteCoin.data;
 
@@ -20,6 +20,11 @@ public class WorkWithMySQL implements WorkWithDB{
     private EntityManager em;
 
     public WorkWithMySQL() {
+        emf = Persistence.createEntityManagerFactory("noteCoinDB");
+        em = emf.createEntityManager();
+    }
+
+    public void reloadConnectWithDB() {
         emf = Persistence.createEntityManagerFactory("noteCoinDB");
         em = emf.createEntityManager();
     }
@@ -63,5 +68,29 @@ public class WorkWithMySQL implements WorkWithDB{
             em.close();
             emf.close();
         }
+    }
+
+    public Integer removeTransaction(Transaction transaction) {
+        Integer status;
+        Long transactionId = transaction.getId();
+
+        em.getTransaction().begin();
+        try{
+            Transaction tr = em.find(Transaction.class, transactionId);
+            if (tr != null) {
+                em.remove(tr);
+                status = 1;
+            }else{
+                status = 0;
+            }
+            em.getTransaction().commit();
+        }catch (Exception ex){
+            em.getTransaction().rollback();
+            status = 0;
+        }finally {
+            em.close();
+            emf.close();
+        }
+        return status;
     }
 }

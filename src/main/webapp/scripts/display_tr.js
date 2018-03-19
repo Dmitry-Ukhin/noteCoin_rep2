@@ -1,5 +1,5 @@
 /**
- * last change 18.03.18 18:09
+ * last change 20.03.18 01:55
  */
 function showTrans() {
     var type, date, descr, data;
@@ -84,36 +84,62 @@ function insertResp(resp) {
     var transaction;
     var start = 0, end = 0;
 
+    /*
+    Delete data from table
+     */
     var table = document.getElementById("table");
-    if (table.rows.length > 1){
-        for (var i = 1; i < table.rows.length; ){
+    if (table.rows.length > 1) {
+        for (var i = 1; i < table.rows.length;) {
             var row = table.rows[i];
             row.parentNode.removeChild(row);
         }
     }
 
-    for (var i = 1 ; start < resp.length || i < 20; i++){
+    /*
+    Insert Transactions to table
+     */
+    for (var i = 1; start < resp.length || i < 20; i++) {
+
         end = resp.indexOf("}", start) + 1;
         transaction = resp.substring(start, end);
         start = end;
-
         var json = JSON.parse(transaction);
+
         type = json.type;
-        sum = json.sum;
+           sum = json.sum;
         date = json.date;
         descr = json.descr;
-
         var table = document.getElementById("table");
-        var row = table.insertRow(i);
 
+        var row = table.insertRow(i);
         var cell1 = row.insertCell(0);
+
         var cell2 = row.insertCell(1);
         var cell3 = row.insertCell(2);
         var cell4 = row.insertCell(3);
+        var cell5 = row.insertCell(4);
 
         cell1.innerHTML = type;
         cell2.innerHTML = sum;
         cell3.innerHTML = date;
         cell4.innerHTML = descr;
+
+        /*
+        Create button for remove Transaction
+         */
+        var button = document.createElement("BUTTON");
+        button.id = i;
+        button.onclick = function () {
+            var table = document.getElementById("table");
+            var row = table.rows[this.id];
+            var type = row.cells[0];
+            var date = row.cells[2];
+            var descr = row.cells[3];
+            removeTran(type, date, descr);
+        };
+        button.innerHTML = "remove";
+
+        cell5.appendChild(button);
+
     }
 }

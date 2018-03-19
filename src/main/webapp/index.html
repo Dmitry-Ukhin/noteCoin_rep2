@@ -1,5 +1,5 @@
 <!--
-	last change 18.03.18 16:53
+	last change 20.03.18 01:42
 -->
 <!DOCTYPE html>
 <html>
@@ -8,6 +8,7 @@
 		<title>noteCoin</title>
 		<script src="scripts/script.js"></script>
 		<script src="scripts/display_tr.js"></script>
+		<script src="scripts/removeTran.js"></script>
 		<style>
 			.display-tran{
 				position: absolute;
@@ -29,7 +30,7 @@
 	</head>
 	<body>
 		<div id="version" class="version">
-			<h2>v0.2 PreAlpha b:18.03.18</h2>
+			<h2>v0.2 PreAlpha b:20.03.18</h2>
 		</div>
 		<div id="save-tran" class="save-tran">
             <h4>Save Transaction</h4>
@@ -151,6 +152,8 @@
 		</div>
 
 		<div id="table-trans" class="table-trans">
+			<h4>Status of removing</h4>
+			<p id="status-deleted"></p>
 			<table id="table" align="center" border="1" width="500">
 				<tr id="tr11">
 					<td id="th11">type</td>
@@ -159,7 +162,6 @@
 					<td id="th14">description</td>
 				</tr>
 			</table>
->>>>>>> version-0.2
 		</div>
 	</body>
 <html>
