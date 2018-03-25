@@ -1,56 +1,51 @@
-<!--
-	last change 20.03.18 01:42
--->
 <!DOCTYPE html>
 <html>
-	<head>
+<head>
 		<meta charset="utf-8" />
 		<title>noteCoin</title>
 		<script src="scripts/script.js"></script>
 		<script src="scripts/display_tr.js"></script>
 		<script src="scripts/removeTran.js"></script>
-		<style>
-			.display-tran{
-				position: absolute;
-				top: 40px;
-				right: 80px;
-				margin: auto;
-			}
-			.version{
-				position: static;
-				text-align: center;
-			}
-			.table-trans{
-				position: absolute;
-				margin: 0;
-				left: 30%;
-				top: 80%;
-			}
-		</style>
+        <link href="styles/index.css" rel="stylesheet">
 	</head>
-	<body>
-		<div id="version" class="version">
-			<h2>v0.2 PreAlpha b:20.03.18</h2>
+<body>
+    <div class="logo">
+        <img src="resources/logo(noteCoin).png" width="500", height="125">
+    </div>
+    <div id="version" class="version">
+			<h5>v0.2.1 PreAlpha b:24.03.18</h5>
 		</div>
 		<div id="save-tran" class="save-tran">
-            <h4>Save Transaction</h4>
+			<div class="name-form1">
+            	<p class="p1">Save Transaction</p>
+			</div>
 			<form id="formForSaveTransaction" action="/save_tran">
-				<label for="typeEx">
-					<input type="radio" name="type" id="typeEx" value="expenses"/>
-				</label>Expenses<Br>
-				<label for="typeIn">
-					<input type="radio" name="type" id="typeIn" value="incomes"/>
-				</label>Incomes<Br>
+                <div class="mainDivCheckBox-1">
+                    <p class="p2-1">Expense</p>
+                    <div class="divCheckBox-1">
+                        <input type="checkbox" name="checkbox-1" id="checkbox-1" value="income" class="checkbox-1"/>
+                        <label for="checkbox-1"></label>
+                    </div>
+                    <p class="p2-2">Income</p>
+
+                    <!--<label for="typeEx">-->
+                        <!--<input type="radio" name="type" id="typeEx" value="expenses" class="type"/>-->
+                    <!--</label>Expenses<Br>-->
+                    <!--<label for="typeIn">-->
+                        <!--<input type="radio" name="type" id="typeIn" value="incomes"/>-->
+                    <!--</label>Incomes<Br>-->
+                </div>
 
 				<p>how much money was spent?</p>
 				<label for="sum">
-				<input type="text" name="sum" id="sum"/>
+				<input type="text" name="sum" id="sum" required/>
 				</label>
 
 				<p>description</p>
 				<label for="description">
-				<textarea id="description" name="description" cols="50" rows="3"></textarea>
+				<textarea id="description" name="description" cols="30" rows="3"></textarea>
 				</label>
+                <input class="descr"/>
 
 				<p>
                 <input type="button" value="Save" onclick="SaveTran()"/>
@@ -142,7 +137,7 @@
 
 				<h4>description of transaction</h4>
 				<label for="description2">
-					<textarea id="description2" name="description" cols="50" rows="3"></textarea>
+					<textarea id="description2" name="description" cols="30" rows="3"></textarea>
 				</label>
 
 				<p>
