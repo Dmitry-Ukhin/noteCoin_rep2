@@ -1,3 +1,8 @@
+/*
+PARAMETERS:
+    1. font-family: 'Josefin Sans', sans-serif;
+*/
+
 body{
     background: #f0f0f0;
 }
@@ -21,17 +26,10 @@ html body{
     z-index: 9998;
 }
 
-/*[class|="block"]{*/
-    /*position: relative;*/
-    /*width: 430px;*/
-    /*height: 650px;*/
-    /*display: inline-block;*/
-    /*margin-left: 11px;*/
-    /*margin-right: 1px;*/
-    /*z-index: 1;*/
-    /*overflow: hidden;*/
-/*}*/
 
+/*>>>>>>>>>>
+Clear Blocks
+<<<<<<<<<<<<*/
 .block{
     position: relative;
     width: 420px;
@@ -52,17 +50,15 @@ html body{
 }
 
 .column-left{
-    /*background: red;*/
+
 }
 
 .column-middle{
-    /*background: blue;*/
+
 }
 
 .column-right{
-    /*width: 100%;*/
-    /*margin-top: 10%;*/
-    /*background: green;*/
+
 }
 
 [class*="form"]{
@@ -72,10 +68,7 @@ html body{
 }
 
 [class*="form-right"]{
-    /*top: 20px;*/
-    /*left: 16px;*/
     position: relative;
-    /*width: 400px;*/
     max-height: 100%;
     width: 100%;
     height: 150px;
@@ -84,8 +77,6 @@ html body{
 }
 
 [class*="form-middle"]{
-    /*top: 20px;*/
-    /*left: 106px;*/
     position: relative;
     width: 400px;
     height: 150px;
@@ -100,4 +91,89 @@ html body{
     background: white;
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     display: block;
+}
+
+/*>>>>>>>>
+New Transaction
+<<<<<<<<<<*/
+.head-1{
+    font-family: 'Josefin Sans', sans-serif;
+    text-align: center;
+    background: #bf0000;
+}
+
+/*########
+checkbox type of new transaction
+##########*/
+.a{
+    font-family: 'Josefin Sans', sans-serif;
+    position: relative;
+    left: 27%;
+    margin-top: -15%;
+    display: inline-block;
+}
+
+.h4-right, .h4-left{
+    top: -10px;
+}
+
+.h4-left{
+    margin-right: 10px;
+}
+
+.h4-right{
+    margin-left: 10px;
+}
+
+.div-typeTran{
+    width: 40px;
+    height: 12px;
+    background: #555;
+    border-radius: 3px;
+}
+
+.div-typeTran label{
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+
+    transition: all .5s ease;
+    cursor: pointer;
+    position: absolute;
+    top: -4px;
+    left: -3px;
+
+    background: #c80000;
+}
+
+.div-typeTran input[type="checkbox"]:checked + label{
+    left: 24px;
+    background: #15c306;
+}
+
+#typeTran{
+    margin-top: 8px;
+    visibility: hidden;
+}
+
+/*###########
+input sum of new transaction
+############*/
+.sumNewTran{
+    margin-left: 14%;
+    height: 24px;
+    outline: none;
+
+    border: none;
+    border-bottom: 1px solid #356ec8;
+    transition: all 0.3s cubic-bezier(.64,.09,.08,1);
+}
+
+.sumNewTran:focus{
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 22px;
+
+    /*.64,.09,.08,1*/
+    transition: all 0.3s cubic-bezier(.64,.09,.08,1);
 }

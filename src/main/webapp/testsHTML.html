@@ -22,6 +22,54 @@
             width: 100%;
             padding-right: 25px;
         }
+
+        .a{
+            margin-top: 50px;
+        }
+        .block1{
+            width: 100px;
+            height: 100px;
+            background: #bf0000;
+        }
+
+        .div-typeTran{
+            width: 30px;
+            height: 10px;
+            background: #555;
+            border-radius: 3px;
+        }
+
+        .div-typeTran label{
+            display: block;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+
+            transition: all .5s ease;
+            cursor: pointer;
+            position: absolute;
+            top: -3px;
+            left: -3px;
+
+            background: #c80000;
+        }
+
+        .div-typeTran input[type="checkbox"]:checked + label{
+            left: 16px;
+            background: #15c306;
+        }
+
+        #typeTran{
+            visibility: hidden;
+        }
+
+        .a{
+            font-family: 'Josefin Sans', sans-serif;
+            position: relative;
+            left: 30%;
+            margin-top: -15%;
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
@@ -56,5 +104,23 @@
             <div style="background: aqua; width: 100px; height: 100px;"></div>
         </div>
     </div>
+
+    <div class="div-typeTran a">
+
+        <input type="checkbox" value="income" id="typeTran" class="typeTran" onclick="foo()">
+        <label for="typeTran"></label>
+        <script type="text/javascript">
+            function foo() {
+                var element = document.getElementById("typeTran");
+                if (element.checked){
+                    alert("checked");
+                    var head = document.getElementById()
+                }
+            }
+        </script>
+    </div>
+
+    <div class="block1"></div>
+    <div class="block1 a"></div>
 </body>
 </html>

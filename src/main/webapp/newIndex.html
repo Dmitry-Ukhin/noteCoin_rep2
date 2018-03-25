@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <title>noteCoin</title>
     <link href="styles/newIndex.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
 </head>
 <body>
+    <!--logo-->
     <div class="logo">
         <img src="resources/logo(noteCoin).png" width="500", height="125">
     </div>
+    <!--version-->
     <div id="version" class="version">
         <h5>v0.2.1 PreAlpha b:25.03.18</h5>
     </div>
+    <!--blocks-->
     <div class="block">
         <div class="column-left">
             <div style="width: 0; height: 700px;"></div>
@@ -44,7 +48,53 @@
     <div class="block">
         <div class="column-right">
             <div style="width: 0; height: 700px;"></div>
-            <div class="form-right-1"></div>
+            <div class="form-right-1">
+                <!--head of block-->
+                <div class="head-1" id="head-1"><h4 style="color: white;">new transaction</h4></div>
+                <label for="head-1"></label>
+                <!--start form-->
+                <form id="newTran"></form>
+                <!--checkbox for type of transaction.
+                 If checked typeTran="income"-->
+                <h4 class="a h4-left">Expense</h4>
+                <div class="div-typeTran a">
+                    <input type="checkbox" value="income" id="typeTran" form="newTran" class="typeTran" onclick="changeHead()"/>
+                    <label for="typeTran"></label>
+                    <script type="text/javascript">
+                        function changeHead() {
+                            var element = document.getElementById("typeTran");
+                            var head, sum;
+                            if (element.checked){
+                                head = document.getElementById("head-1");
+                                head.style.transition = ".5s";
+                                head.style.background = "#15c306";
+
+                                sum = document.getElementById("sumNewTran");
+                                sum.style.transition = ".5s";
+                                sum.style.borderTop = "none";
+                                sum.style.borderLeft = "none";
+                                sum.style.borderRight = "none";
+                                sum.style.borderBottom = "1px solid #15c306"
+                            }else{
+                                head = document.getElementById("head-1");
+                                head.style.transition = ".5s";
+                                head.style.background = "#c80000";
+
+                                sum = document.getElementById("sumNewTran");
+                                sum.style.transition = ".5s";
+                                sum.style.borderTop = "none";
+                                sum.style.borderLeft = "none";
+                                sum.style.borderRight = "none";
+                                sum.style.borderBottom = "1px solid #c80000"
+                            }
+                        }
+                    </script>
+                </div>
+                <h4 class="a h4-right">Income</h4>
+
+                <input type="text" placeholder="sum" id="sum" form="newTran" class="sumNewTran" required>
+                <label for="sum"></label>
+            </div>
             <div class="form-right-2"></div>
             <div class="form-right-3"></div>
             <div class="form-right-4"></div>
