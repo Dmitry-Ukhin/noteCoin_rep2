@@ -110,6 +110,8 @@ input description of new transaction
 
     outline: none;
 
+    overflow: hidden;
+
     border: none;
     border-bottom: 1px solid #356ec8;
 }
@@ -118,6 +120,10 @@ input description of new transaction
     height: 25px !important;
     font-size: 18px;
     transition: all 0.3s cubic-bezier(.64,.09,.08,1);
+}
+
+.descriptionNewTran:focus::-webkit-input-placeholder{
+    color: #356ec8;
 }
 
 /*##########

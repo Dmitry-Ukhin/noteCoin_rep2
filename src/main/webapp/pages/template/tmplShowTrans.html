@@ -1,0 +1,36 @@
+<template id="tmplShowTrans">
+    <div class="form-showTrans">
+        <div class="head-showTrans" id="head-showTrans">
+            <div class="head-text">
+                <h4 class="h4-head showTrans">show transactions</h4>
+            </div>
+        </div>
+
+        <form id="showTrans"></form>
+
+        <div class="div-show-a">
+            <h4 class="a h4-left h4-show-left">Expense</h4>
+            <div class="div-typeTran a div-type-show">
+                <input type="checkbox" value="income" id="typeTran_show" form="showTrans" class="typeTran"/>
+                <label for="typeTran_show"></label>
+                <h4 class="a h4-right h4-show-right">Income</h4>
+            </div>
+        </div>
+
+        <div class="date-time">
+            <input placeholder="day" class="date" type="number" name="day" id="day" min="1" max="31" form="showTrans"/>
+            <input placeholder="month" class="date" type="number" name="month" id="month" min="1" max="12" form="showTrans"/>
+            <input placeholder="year" class="date" type="number" name="year" id="year" min="2000" max="2018" form="showTrans"/>
+        </div>
+
+        <textarea id="descriptionTrans-show" class="descriptionTrans-show" form="showTrans" placeholder="description"></textarea>
+        <label for="descriptionTrans-show"></label>
+
+        <div class="div-buttonShowTrans">
+            <input type="button" id="buttonShowTrans" form="showTrans" class="buttonShowTrans"/>
+            <label for="buttonShowTrans">
+                <!--<img class="icon_buttonNewTran" src="../resources/ic_done_white_24dp_1x.png"/>-->
+            </label>
+        </div>
+    </div>
+</template>

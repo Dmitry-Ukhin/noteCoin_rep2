@@ -6,10 +6,12 @@
     <!--Import templates-->
     <link id="lastTrans" href="template/tmplLastTrans.html" rel="import">
     <link id="newTran" href="template/tmplNewTran.html" rel="import">
+    <link id="showTrans" href="template/tmplShowTrans.html" rel="import">
     <!--Import stylesheets-->
     <link href="../styles/newIndex.css" rel="stylesheet">
-    <link href="../styles/newTransaction.css" rel="stylesheet">
+    <link href="../styles/newTran.css" rel="stylesheet">
     <link href="../styles/lastTrans.css" rel="stylesheet">
+    <link href="../styles/showTrans.css" rel="stylesheet">
     <!--Import scripts-->
 
     <!--Other imports-->
@@ -27,7 +29,7 @@
     <!--blocks-->
     <div class="block">
         <div class="column-left" id="column-left">
-            <!--<div style="width: 0; height: 700px;"></div>-->
+            <div style="width: 0; height: 700px;"></div>
             <script type="text/javascript">
                 var link = document.querySelector('#lastTrans');
 
@@ -48,12 +50,21 @@
     </div>
     <div class="block">
         <div class="column-right" id="column-right">
-            <!--<div style="width: 0; height: 700px;"></div>-->
+            <div style="width: 0; height: 700px;"></div>
             <script type="text/javascript">
                 var link = document.querySelector('#newTran');
 
                 // Clone the <template> in the import.
                 var template = link.import.querySelector('#tmplNewTran');
+                var clone = document.importNode(template.content, true);
+
+                document.querySelector('#column-right').appendChild(clone);
+            </script>
+            <script type="text/javascript">
+                var link = document.querySelector('#showTrans');
+
+                // Clone the <template> in the import.
+                var template = link.import.querySelector('#tmplShowTrans');
                 var clone = document.importNode(template.content, true);
 
                 document.querySelector('#column-right').appendChild(clone);

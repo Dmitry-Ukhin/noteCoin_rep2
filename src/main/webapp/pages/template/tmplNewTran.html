@@ -1,8 +1,9 @@
 <template id="tmplNewTran">
     <div class="form-newTran">
         <!--head of block-->
-        <div class="head-newTran" id="head-newTran"><h4 style="color: white;">new transaction</h4></div>
-        <label for="head-newTran"></label>
+        <div class="head-newTran" id="head-newTran">
+            <h4 style="color: white;">new transaction</h4>
+        </div>
         <!--start form-->
         <form id="newTran"></form>
         <!--checkbox for type of transaction.
@@ -44,14 +45,14 @@
         </div>
         <h4 class="a h4-right">Income</h4>
 
-        <input type="text" placeholder="sum" id="sum" form="newTran" class="sumNewTran" required>
+        <input type="number" placeholder="sum" id="sum" form="newTran" class="sumNewTran" required>
         <label for="sum"></label>
 
-        <textarea id="descriptionNewTran" class="descriptionNewTran" form="newTran" placeholder="description" onKeyUp="SetNewSize(this);"></textarea>
+        <textarea id="descriptionNewTran" class="descriptionNewTran" form="newTran" placeholder="description"></textarea>
         <label for="descriptionNewTran"></label>
 
         <div class="div-buttonNewTran">
-            <input type="button" id="buttonNewTran" form="newTran" class="buttonNewTran button-ripple"/>
+            <input type="button" id="buttonNewTran" form="newTran" class="buttonNewTran"/>
             <label for="buttonNewTran">
                 <!--<img class="icon_buttonNewTran" src="../resources/ic_done_white_24dp_1x.png"/>-->
             </label>
