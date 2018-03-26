@@ -1,0 +1,56 @@
+/*>>>>>>>>>>>>>>>
+Last three transactions
+<<<<<<<<<<<<<<*/
+.form-lastTrans{
+    width: 80% !important;
+}
+
+.head-lastTrans{
+    height: 19px;
+    font-family: 'Josefin Sans', sans-serif;
+    /*text-align: center;*/
+    background: #649dbf;
+}
+
+.head-text{
+    position: relative;
+    text-align: center;
+    top: 4px;
+    color: white;
+}
+
+.transactions{
+    width: 100px;
+    height: 100px;
+    top: -20px;
+    margin-left: 10px;
+    position: relative;
+}
+
+.tableTrans{
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 16px;
+
+    position: relative;
+    width: 305px;
+    top: 20px;
+
+    border-collapse: collapse;
+    text-align: center;
+}
+
+td{
+    height: 33px;
+    vertical-align: bottom;
+
+    border-bottom: 2px solid #356ec8;
+    /*background: #bf0000;*/
+}
+
+tr:hover{
+    cursor: pointer;
+    /*font-size: 18px;*/
+    border-bottom: 3px solid #356ec8;
+    transition: all 0.1s cubic-bezier(0,0,.02,.98);
+}
+

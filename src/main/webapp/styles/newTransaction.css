@@ -1,0 +1,181 @@
+/*>>>>>>>>
+New Transaction
+<<<<<<<<<<*/
+.form-newTran{
+    margin-left: 60px;
+    width: 80% !important;
+    height: 190px !important;
+}
+
+.head-newTran{
+    font-family: 'Josefin Sans', sans-serif;
+    text-align: center;
+    background: #bf0000;
+}
+
+/*########
+checkbox type of new transaction
+##########*/
+.a{
+    font-family: 'Josefin Sans', sans-serif;
+    position: relative;
+    left: 24%;
+    margin-top: -15%;
+    display: inline-block;
+}
+
+.h4-right, .h4-left{
+    top: -10px;
+}
+
+.h4-left{
+    margin-right: 10px;
+}
+
+.h4-right{
+    margin-left: 10px;
+}
+
+.div-typeTran{
+    width: 40px;
+    height: 12px;
+    background: #555;
+    border-radius: 3px;
+}
+
+.div-typeTran label{
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+
+    transition: all .5s ease;
+    cursor: pointer;
+    position: absolute;
+    top: -4px;
+    left: -3px;
+
+    background: #c80000;
+}
+
+.div-typeTran input[type="checkbox"]:checked + label{
+    left: 24px;
+    background: #12a506;
+}
+
+#typeTran{
+    margin-top: 8px;
+    visibility: hidden;
+}
+
+/*###########
+input sum of new transaction
+############*/
+.sumNewTran{
+    top: -34px;
+    margin-left: 8%;
+    height: 24px;
+
+    transition: all 0.3s cubic-bezier(.64,.09,.08,1);
+    font-family: 'Josefin Sans', sans-serif;
+
+    outline: none;
+
+    border: none;
+    border-bottom: 1px solid #356ec8;
+}
+
+.sumNewTran:focus{
+    font-size: 18px;
+    transition: all 0.3s cubic-bezier(.64,.09,.08,1);
+}
+
+.sumNewTran:focus::-webkit-input-placeholder{
+    color: #356ec8;
+}
+
+/*############
+input description of new transaction
+##############*/
+.descriptionNewTran{
+    height: 15px;
+
+    margin-top: 10px;
+    margin-left: 8%;
+
+    resize: none;
+    /*overflow: hidden;*/
+    transition: all 0.3s cubic-bezier(.64,.09,.08,1);
+    font-family: 'Josefin Sans', sans-serif;
+
+    outline: none;
+
+    border: none;
+    border-bottom: 1px solid #356ec8;
+}
+
+.descriptionNewTran:focus{
+    height: 25px !important;
+    font-size: 18px;
+    transition: all 0.3s cubic-bezier(.64,.09,.08,1);
+}
+
+/*##########
+button "send" for new transaction
+##########*/
+@keyframes hideElement {
+    0%{opacity: .1;}
+    10%{opacity: .2;}
+    20%{opacity: .3;}
+    30%{opacity: .4;}
+    40%{opacity: .5;}
+    50%{opacity: .6;}
+    60%{opacity: .7;}
+    70%{opacity: .8;}
+    80%{opacity: .9;}
+    90%{opacity: 1;}
+}
+
+.buttonNewTran{
+    position: relative;
+    /*45px, 45px*/
+    width: 45px;
+    height: 45px;
+    /*35px*/
+    border-radius: 35px;
+    outline: none;
+
+    cursor: pointer;
+
+
+    border: 0;
+
+    background: #c80000 url("../resources/ic_done_white_24dp_1x.png") no-repeat;
+    background-position-x: 10px;
+    background-position-y: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    transition: background-color .3s;
+}
+
+.buttonNewTran:hover + label{
+    cursor: pointer;
+}
+
+.buttonNewTran:focus{
+    animation-fill-mode: none;
+    animation: hideElement 1s;
+}
+
+.div-buttonNewTran{
+    width: 45px;
+    height: 45px;
+    margin-left: 80%;
+    margin-top: -5%;
+}
+
+.icon_buttonNewTran{
+    position: relative;
+    top: -60%;
+    left: 25%;
+    margin-top: -90px;
+}

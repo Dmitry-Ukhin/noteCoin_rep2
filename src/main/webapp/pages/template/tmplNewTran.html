@@ -1,0 +1,60 @@
+<template id="tmplNewTran">
+    <div class="form-newTran">
+        <!--head of block-->
+        <div class="head-newTran" id="head-newTran"><h4 style="color: white;">new transaction</h4></div>
+        <label for="head-newTran"></label>
+        <!--start form-->
+        <form id="newTran"></form>
+        <!--checkbox for type of transaction.
+         If checked typeTran="income"-->
+        <h4 class="a h4-left">Expense</h4>
+        <div class="div-typeTran a">
+            <input type="checkbox" value="income" id="typeTran" form="newTran" class="typeTran" onclick="changeBackground()"/>
+            <label for="typeTran"></label>
+            <script type="text/javascript">
+                function changeBackground() {
+                    var ptrImg = "../resources/ic_done_white_24dp_1x.png";
+                    var pos_x = "10px", pos_y = "10px";
+
+                    var element = document.getElementById("typeTran");
+                    var head, button;
+                    if (element.checked){
+                        head = document.getElementById("head-newTran");
+                        head.style.transition = ".5s";
+                        head.style.background = "#12a506";
+
+                        button = document.getElementById("buttonNewTran");
+                        button.style.transition = ".5s";
+                        button.style.background = "#12a506 url(\""+ ptrImg +"\") no-repeat";
+                        button.style.backgroundPositionX = pos_x;
+                        button.style.backgroundPositionY = pos_y;
+                    }else{
+                        head = document.getElementById("head-newTran");
+                        head.style.transition = ".5s";
+                        head.style.background = "#c80000";
+
+                        button = document.getElementById("buttonNewTran");
+                        button.style.transition = ".5s";
+                        button.style.background = "#c80000 url(\""+ ptrImg +"\") no-repeat";
+                        button.style.backgroundPositionX = pos_x;
+                        button.style.backgroundPositionY = pos_y;
+                    }
+                }
+            </script>
+        </div>
+        <h4 class="a h4-right">Income</h4>
+
+        <input type="text" placeholder="sum" id="sum" form="newTran" class="sumNewTran" required>
+        <label for="sum"></label>
+
+        <textarea id="descriptionNewTran" class="descriptionNewTran" form="newTran" placeholder="description" onKeyUp="SetNewSize(this);"></textarea>
+        <label for="descriptionNewTran"></label>
+
+        <div class="div-buttonNewTran">
+            <input type="button" id="buttonNewTran" form="newTran" class="buttonNewTran button-ripple"/>
+            <label for="buttonNewTran">
+                <!--<img class="icon_buttonNewTran" src="../resources/ic_done_white_24dp_1x.png"/>-->
+            </label>
+        </div>
+    </div>
+</template>
