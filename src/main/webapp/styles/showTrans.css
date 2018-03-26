@@ -83,17 +83,7 @@ Form of date
     color: #356ec8;
 }
 
-#day:focus{
-    width: 120px;
-    transition: all 0.3s cubic-bezier(.64,.09,.08,1);
-}
-
-#month:focus{
-    width: 120px;
-    transition: all 0.3s cubic-bezier(.64,.09,.08,1);
-}
-
-#year:focus{
+#day:focus, #month:focus, #year:focus{
     width: 120px;
     transition: all 0.3s cubic-bezier(.64,.09,.08,1);
 }

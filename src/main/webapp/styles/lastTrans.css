@@ -39,17 +39,16 @@ Last three transactions
     text-align: center;
 }
 
-td{
+.td-L{
     height: 50px;
     vertical-align: bottom;
 
     border-bottom: 2px solid #356ec8;
-    /*background: #bf0000;*/
 }
 
-tr:hover{
+.tr-L:hover{
     cursor: pointer;
-    /*font-size: 18px;*/
+
     border-bottom: 3px solid #356ec8;
     transition: all 0.1s cubic-bezier(0,0,.02,.98);
 }

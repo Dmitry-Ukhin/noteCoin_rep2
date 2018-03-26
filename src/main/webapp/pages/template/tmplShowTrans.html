@@ -27,10 +27,21 @@
         <label for="descriptionTrans-show"></label>
 
         <div class="div-buttonShowTrans">
-            <input type="button" id="buttonShowTrans" form="showTrans" class="buttonShowTrans"/>
-            <label for="buttonShowTrans">
-                <!--<img class="icon_buttonNewTran" src="../resources/ic_done_white_24dp_1x.png"/>-->
-            </label>
+            <input type="button" id="buttonShowTrans" form="showTrans" class="buttonShowTrans" onclick="showElement();"/>
+            <label for="buttonShowTrans"></label>
         </div>
+
+        <script type="text/javascript">
+            function showElement() {
+                var link = document.querySelector('#listTrans');
+
+                // Clone the <template> in the import.
+                var template = link.import.querySelector('#tmplListTrans');
+                var clone = document.importNode(template.content, true);
+                var body = document.querySelector('body')
+
+                body.appendChild(clone);
+            }
+        </script>
     </div>
 </template>
