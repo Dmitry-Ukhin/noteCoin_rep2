@@ -63,29 +63,23 @@
                     <script type="text/javascript">
                         function changeHead() {
                             var element = document.getElementById("typeTran");
-                            var head, sum;
+                            var head, button;
                             if (element.checked){
                                 head = document.getElementById("head-1");
                                 head.style.transition = ".5s";
-                                head.style.background = "#15c306";
+                                head.style.background = "#12a506";
 
-                                sum = document.getElementById("sumNewTran");
-                                sum.style.transition = ".5s";
-                                sum.style.borderTop = "none";
-                                sum.style.borderLeft = "none";
-                                sum.style.borderRight = "none";
-                                sum.style.borderBottom = "1px solid #15c306"
+                                button = document.getElementById("buttonNewTran");
+                                button.style.transition = ".5s";
+                                button.style.background = "#12a506"
                             }else{
                                 head = document.getElementById("head-1");
                                 head.style.transition = ".5s";
                                 head.style.background = "#c80000";
 
-                                sum = document.getElementById("sumNewTran");
-                                sum.style.transition = ".5s";
-                                sum.style.borderTop = "none";
-                                sum.style.borderLeft = "none";
-                                sum.style.borderRight = "none";
-                                sum.style.borderBottom = "1px solid #c80000"
+                                button = document.getElementById("buttonNewTran");
+                                button.style.transition = ".5s";
+                                button.style.background = "#c80000"
                             }
                         }
                     </script>
@@ -94,12 +88,28 @@
 
                 <input type="text" placeholder="sum" id="sum" form="newTran" class="sumNewTran" required>
                 <label for="sum"></label>
+
+                <textarea id="descriptionNewTran" class="descriptionNewTran" form="newTran" placeholder="description" onKeyUp="SetNewSize(this);"></textarea>
+                <label for="descriptionNewTran"></label>
+
+                <div class="div-buttonNewTran">
+                    <input type="button" id="buttonNewTran" form="newTran" class="buttonNewTran button-ripple" onclick="bar();"/>
+                    <label for="buttonNewTran">
+                        <img class="icon_buttonNewTran" src="resources/ic_done_white_24dp_1x.png"/>
+                    </label>
+                    <!--<script type="text/javascript">-->
+                        <!--function bar() {-->
+                            <!--alert("pressed");-->
+                        <!--}-->
+                    <!--</script>-->
+                </div>
             </div>
             <div class="form-right-2"></div>
             <div class="form-right-3"></div>
             <div class="form-right-4"></div>
             <div class="form-right-5"></div>
             <div class="form-right-6"></div>
+            <div style="width: 0; height: 700px;"></div>
         </div>
     </div>
 </body>
