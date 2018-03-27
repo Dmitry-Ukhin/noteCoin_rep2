@@ -18,13 +18,13 @@ function lastTrans() {
     xhr.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             if (xhr.responseText !== "") {
-                insertResp(xhr.responseText);
+                insertLastTrans(xhr.responseText);
             }
         }
     };
 }
 
-function insertResp(resp) {
+function insertLastTrans(resp) {
     var type = "null", date = "null", sum = "null";
     var transaction;
     var start = 0, end = 0;
@@ -41,7 +41,7 @@ function insertResp(resp) {
     /*
     Insert Transactions to table
      */
-    for (i = 0; start < resp.length || i < 20; i++) {
+    for (i = 0; start < resp.length; i++) {
 
         end = resp.indexOf("}", start) + 1;
         transaction = resp.substring(start, end);
@@ -51,6 +51,7 @@ function insertResp(resp) {
         type = json.type;
         sum = json.sum;
         date = json.date;
+        date = date.substring(0,12);
         table = document.getElementById("tableLastTrans");
         row = table.insertRow(i);
         row.className = "tr-L";
@@ -63,11 +64,11 @@ function insertResp(resp) {
         cell3.className = "td-L";
 
         cell1.innerHTML = type;
-        cell2.innerHTML = sum;
-        cell3.innerHTML = date;
+        cell2.innerHTML = date;
+        cell3.innerHTML = sum;
     }
 
-    var wait = document.getElementById("div-Wait");
+    var wait = document.getElementById("lastTrans-Wait");
     if (wait !== null) {
         wait.remove();
     }

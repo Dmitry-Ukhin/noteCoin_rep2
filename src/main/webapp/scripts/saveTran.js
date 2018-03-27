@@ -10,9 +10,9 @@ function SaveTran() {
     var element = document.getElementById("typeTran");
     var type;
     if (element.checked){
-        type = "income";
+        type = "incomes";
     }else if (!element.checked){
-        type = "expense";
+        type = "expenses";
     }
 
     element = document.getElementById("sum");

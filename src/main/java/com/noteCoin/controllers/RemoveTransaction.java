@@ -31,10 +31,12 @@ public class RemoveTransaction extends HttpServlet{
         requestToDB += "type LIKE \'" + type + "\' AND ";
         requestToDB += "date LIKE \'" + date + "\' AND ";
         requestToDB += "descr LIKE \'" + descr + "\'";
+        System.out.println("REQUEST:" + requestToDB);
 
         WorkWithDB dataBase = new WorkWithMySQL();
         List<Transaction> transactions = dataBase.loadFromDB(requestToDB);
         dataBase.reloadConnectWithDB();
+        System.out.println(transactions.toString());
         Integer status = dataBase.removeTransaction(transactions.get(0));
         if (status == 1){
             resp.getWriter().println("success");
@@ -77,6 +79,9 @@ public class RemoveTransaction extends HttpServlet{
 
         endIndex = time.indexOf(":", startIndex);
         hour = time.substring(startIndex, endIndex);
+        if (hour.equals("00")){
+            hour = "12";
+        }
         startIndex = endIndex + 1;
 
         endIndex = time.indexOf(":", startIndex);
@@ -124,9 +129,6 @@ public class RemoveTransaction extends HttpServlet{
                     break;
                 case 11:
                     hour = "23";
-                    break;
-                case 12:
-                    hour = "00";
                     break;
             }
             return hour + ":" + minutes + ":" + seconds;

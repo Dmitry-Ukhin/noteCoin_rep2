@@ -25,6 +25,14 @@
 		<url-pattern>/show</url-pattern>
 	</servlet-mapping>
     <servlet>
+        <servlet-name>lastTrans</servlet-name>
+        <servlet-class>com.noteCoin.controllers.LastTrans</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>lastTrans</servlet-name>
+        <url-pattern>/lastTrans</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>remove</servlet-name>
         <servlet-class>com.noteCoin.controllers.RemoveTransaction</servlet-class>
     </servlet>
@@ -33,24 +41,24 @@
         <url-pattern>/remove</url-pattern>
     </servlet-mapping>
 
-	<servlet>
-		<servlet-name>default</servlet-name>
-		<servlet-class>
-			org.apache.catalina.servlets.DefaultServlet
-		</servlet-class>
+	<!--<servlet>-->
+		<!--<servlet-name>default</servlet-name>-->
+		<!--<servlet-class>-->
+			<!--org.apache.catalina.servlets.DefaultServlet-->
+		<!--</servlet-class>-->
+		<!--&lt;!&ndash;<init-param>&ndash;&gt;-->
+			<!--&lt;!&ndash;<param-name>debug</param-name>&ndash;&gt;-->
+			<!--&lt;!&ndash;<param-value>0</param-value>&ndash;&gt;-->
+		<!--&lt;!&ndash;</init-param>&ndash;&gt;-->
 		<!--<init-param>-->
-			<!--<param-name>debug</param-name>-->
-			<!--<param-value>0</param-value>-->
+			<!--<param-name>listings</param-name>-->
+			<!--<param-value>false</param-value>-->
 		<!--</init-param>-->
-		<init-param>
-			<param-name>listings</param-name>
-			<param-value>false</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
+		<!--<load-on-startup>1</load-on-startup>-->
+	<!--</servlet>-->
 
-	<servlet-mapping>
-		<servlet-name>default</servlet-name>
-		<url-pattern>/</url-pattern>
-	</servlet-mapping>
+	<!--<servlet-mapping>-->
+		<!--<servlet-name>default</servlet-name>-->
+		<!--<url-pattern>/</url-pattern>-->
+	<!--</servlet-mapping>-->
 </web-app>

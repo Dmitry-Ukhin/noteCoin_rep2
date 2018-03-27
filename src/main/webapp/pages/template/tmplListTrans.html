@@ -64,6 +64,14 @@
                     <th class="th-list">Description</th>
                 </tr>
             </table>
+            <script>
+                function reload_frame0() {
+                    var elm = document.getElementById("list_frame-0");
+                    // elm.style.animation = "ripple-list 1s";
+                    var newone = elm.cloneNode(true);
+                    elm.parentNode.replaceChild(newone, elm);
+                }
+            </script>
             <div class="cap-table"></div>
         </div>
     </div>

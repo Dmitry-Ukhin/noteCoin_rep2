@@ -12,6 +12,7 @@ public interface WorkWithDB {
     public Integer saveToDB(Transaction transaction);
 
     public List<Transaction> loadFromDB(String requestToDB);
+    public List<Transaction> loadFromDB(String requestToDB, Integer maxResults);
 
     public Integer removeTransaction(Transaction transaction);
 

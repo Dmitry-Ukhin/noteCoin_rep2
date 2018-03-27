@@ -94,6 +94,8 @@ public class ShowTransactions extends HttpServlet{
             requestToDB = requestToDB.substring(startIndex, lastIndex);
         }
 
+        requestToDB += " ORDER BY date DESC";
+
         /*
         Get data from data base
          */
@@ -104,7 +106,6 @@ public class ShowTransactions extends HttpServlet{
         List<Transaction> transactionList = dataBase.loadFromDB(requestToDB);
         if (transactionList != null) {
             for (Transaction tr : transactionList) {
-                System.out.println(tr.toString());
                 json = gson.toJson(tr);
                 resp.getWriter().printf(json);
             }

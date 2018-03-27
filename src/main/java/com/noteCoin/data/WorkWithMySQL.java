@@ -70,6 +70,26 @@ public class WorkWithMySQL implements WorkWithDB{
         }
     }
 
+    public List<Transaction> loadFromDB(String requestToDB, Integer maxResults) {
+        try {
+            Query query = em.createQuery(requestToDB);
+            query.setMaxResults(maxResults);
+            List list = query.getResultList();
+            List<Transaction> transactionList = new ArrayList<Transaction>();
+            for (Object obj : list){
+                Transaction tr = (Transaction)obj;
+                transactionList.add(tr);
+            }
+            return transactionList;
+        }catch (Exception ex){
+            ex.printStackTrace();
+            return null;
+        }finally {
+            em.close();
+            emf.close();
+        }
+    }
+
     public Integer removeTransaction(Transaction transaction) {
         Integer status;
         Long transactionId = transaction.getId();

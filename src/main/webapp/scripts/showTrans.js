@@ -117,7 +117,7 @@ function insertResp(resp) {
     /*
     Insert Transactions to table
      */
-    for (i = 1; start < resp.length || i < 20; i++) {
+    for (i = 1; start < resp.length ; i++) {
 
         end = resp.indexOf("}", start) + 1;
         transaction = resp.substring(start, end);
@@ -155,11 +155,12 @@ function insertResp(resp) {
         button.id = "button-" + i;
         button.className = "rem";
         button.addEventListener("click", {handleEvent: removeTran, index: i});
+        button.addEventListener("click", reload_frame0);
 
         cell5.appendChild(button);
     }
 
-    var wait = document.getElementById("lastTrans-Wait");
+    var wait = document.getElementById("div-Wait");
     if (wait !== null) {
         wait.remove();
     }
