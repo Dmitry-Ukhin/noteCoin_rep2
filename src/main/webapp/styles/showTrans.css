@@ -88,6 +88,11 @@ Form of date
     transition: all 0.3s cubic-bezier(.64,.09,.08,1);
 }
 
+#day:invalid, #month:invalid, #year:invalid{
+    color: #bf0000;
+    border-bottom: 2px solid #bf0000 !important;
+}
+
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;

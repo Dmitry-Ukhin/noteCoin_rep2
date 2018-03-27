@@ -1,0 +1,1 @@
+document.getElementById('buttonNewTran').addEventListener('click', saveTran);

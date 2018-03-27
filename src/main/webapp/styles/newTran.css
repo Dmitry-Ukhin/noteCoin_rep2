@@ -167,11 +167,6 @@ button "send" for new transaction
     cursor: pointer;
 }
 
-.buttonNewTran:focus{
-    animation-fill-mode: none;
-    animation: hideElement 1s;
-}
-
 .div-buttonNewTran{
     width: 45px;
     height: 45px;

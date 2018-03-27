@@ -26,7 +26,7 @@
         <textarea id="descriptionTrans-show" class="descriptionTrans-show" form="showTrans" placeholder="description"></textarea>
         <label for="descriptionTrans-show"></label>
 
-        <div class="div-buttonShowTrans">
+        <div class="div-buttonShowTrans" id="div-buttonShowTrans">
             <input type="button" id="buttonShowTrans" form="showTrans" class="buttonShowTrans" onclick="showElement();"/>
             <label for="buttonShowTrans"></label>
         </div>
@@ -40,7 +40,14 @@
                 var clone = document.importNode(template.content, true);
                 var body = document.querySelector('body')
 
+                var elm = document.getElementById("div-buttonShowTrans");
+                elm.style.animation = "hideElement 1s";
+                var newone = elm.cloneNode(true);
+                elm.parentNode.replaceChild(newone, elm);
+
                 body.appendChild(clone);
+
+
             }
         </script>
     </div>
