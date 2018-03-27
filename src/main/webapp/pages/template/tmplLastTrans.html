@@ -7,22 +7,27 @@
         </div>
 
         <div class="transactions">
-            <table class="tableTrans">
-                <tr class="tr-L">
-                    <td class="td-L">income</td>
-                    <td class="td-L">12.03.2018</td>
-                    <td class="td-L">1000 UAH</td>
-                </tr>
-                <tr class="tr-L">
-                    <td class="td-L">expense</td>
-                    <td class="td-L">12.03.2018</td>
-                    <td class="td-L">123.12 UAH</td>
-                </tr>
-                <tr class="tr-L">
-                    <td class="td-L">expense</td>
-                    <td class="td-L">11.03.2018</td>
-                    <td class="td-L">54.87 UAH</td>
-                </tr>
+            <div id="lastTrans-Wait" class="lastTrans-Wait">Wait...</div>
+            <script src="../../scripts/lastTrans.js"></script>
+            <script type="text/javascript">
+                lastTrans();
+            </script>
+            <table class="tableLastTrans" id="tableLastTrans">
+                <!--<tr class="tr-L">-->
+                    <!--<td class="td-L">income</td>-->
+                    <!--<td class="td-L">12.03.2018</td>-->
+                    <!--<td class="td-L">1000 UAH</td>-->
+                <!--</tr>-->
+                <!--<tr class="tr-L">-->
+                    <!--<td class="td-L">expense</td>-->
+                    <!--<td class="td-L">12.03.2018</td>-->
+                    <!--<td class="td-L">123.12 UAH</td>-->
+                <!--</tr>-->
+                <!--<tr class="tr-L">-->
+                    <!--<td class="td-L">expense</td>-->
+                    <!--<td class="td-L">11.03.2018</td>-->
+                    <!--<td class="td-L">54.87 UAH</td>-->
+                <!--</tr>-->
             </table>
         </div>
     </div>

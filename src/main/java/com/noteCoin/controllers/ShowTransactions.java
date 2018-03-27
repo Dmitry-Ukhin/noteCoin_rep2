@@ -31,13 +31,14 @@ public class ShowTransactions extends HttpServlet{
         Get arguments from request
          */
         type = req.getParameter("type");
+        type = type.toLowerCase();
         if (type.equals("all") || type.equals("undefined")){
             type = null;
         }
         date = req.getParameter("date");
-        if (date.equals("none-none-none")){
+        if (date.equals("undefined-undefined-undefined")){
             date = null;
-        } else if(date.contains("none")){
+        } else if(date.contains("undefined")){
             date = date.replaceAll("none", "%");
         }
         descr = req.getParameter("description");
@@ -103,6 +104,7 @@ public class ShowTransactions extends HttpServlet{
         List<Transaction> transactionList = dataBase.loadFromDB(requestToDB);
         if (transactionList != null) {
             for (Transaction tr : transactionList) {
+                System.out.println(tr.toString());
                 json = gson.toJson(tr);
                 resp.getWriter().printf(json);
             }

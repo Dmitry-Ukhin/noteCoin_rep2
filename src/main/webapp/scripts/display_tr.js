@@ -57,17 +57,17 @@ function getDate(element) {
      * TODO: construct right form of date
      * @type {HTMLElement | null}
      */
-    element = document.getElementById("year");
+    element = document.getElementById("year-show");
     year = element.value;
 
-    element = document.getElementById("month");
+    element = document.getElementById("month-show");
     if (element.value < 10){
         month = "0"+element.value;
     }else{
         month = element.value;
     }
 
-    element = document.getElementById("day");
+    element = document.getElementById("day-show");
     if (element.value < 10){
         day = "0"+element.value;
     }else{
@@ -129,6 +129,7 @@ function insertResp(resp) {
          */
         var button = document.createElement("BUTTON");
         button.id = i;
+        button.className = "rem";
         button.onclick = function () {
             var table = document.getElementById("table");
             var row = table.rows[this.id];

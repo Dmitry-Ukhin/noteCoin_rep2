@@ -1,4 +1,5 @@
 <template id="tmplShowTrans">
+    <script src="../scripts/showTrans.js"></script>
     <div class="form-showTrans">
         <div class="head-showTrans" id="head-showTrans">
             <div class="head-text">
@@ -6,28 +7,37 @@
             </div>
         </div>
 
-        <form id="showTrans"></form>
+        <form id="showTrans" name="showTrans"></form>
 
         <div class="div-show-a">
-            <h4 class="a h4-left h4-show-left">Expense</h4>
-            <div class="div-typeTran a div-type-show">
-                <input type="checkbox" value="income" id="typeTran_show" form="showTrans" class="typeTran"/>
-                <label for="typeTran_show"></label>
-                <h4 class="a h4-right h4-show-right">Income</h4>
+            <!--<h4 class="a h4-left h4-show-left">Expense</h4>-->
+            <!--<div class="div-typeTran a div-type-show">-->
+                <!--<input type="checkbox" value="income" id="typeTran-show" form="showTrans" class="typeTran"/>-->
+                <!--<label for="typeTran-show"></label>-->
+                <!--<h4 class="a h4-right h4-show-right">Income</h4>-->
+            <!--</div>-->
+            <div class="select-show">
+                <select form="showTrans">
+                    <option value="type0" name="option-show" selected>All</option>
+                    <option value="type1" name="option-show">Expense</option>
+                    <option value="type2" name="option-show">Income</option>
+                </select>
             </div>
         </div>
 
+
+
         <div class="date-time">
-            <input placeholder="day" class="date" type="number" name="day" id="day" min="1" max="31" form="showTrans"/>
-            <input placeholder="month" class="date" type="number" name="month" id="month" min="1" max="12" form="showTrans"/>
-            <input placeholder="year" class="date" type="number" name="year" id="year" min="2000" max="2018" form="showTrans"/>
+            <input placeholder="day" class="date" type="number" name="day" id="day-show" min="1" max="31" form="showTrans" value=""/>
+            <input placeholder="month" class="date" type="number" name="month" id="month-show" min="1" max="12" form="showTrans" value=""/>
+            <input placeholder="year" class="date" type="number" name="year" id="year-show" min="2000" max="2018" form="showTrans" value=""/>
         </div>
 
-        <textarea id="descriptionTrans-show" class="descriptionTrans-show" form="showTrans" placeholder="description"></textarea>
-        <label for="descriptionTrans-show"></label>
+        <textarea id="description-show" class="descriptionTrans-show" form="showTrans" placeholder="description"></textarea>
+        <label for="description-show"></label>
 
         <div class="div-buttonShowTrans" id="div-buttonShowTrans">
-            <input type="button" id="buttonShowTrans" form="showTrans" class="buttonShowTrans" onclick="showElement();"/>
+            <input type="button" id="buttonShowTrans" form="showTrans" class="buttonShowTrans" onclick="showElement(); loadTrans('showTrans');"/>
             <label for="buttonShowTrans"></label>
         </div>
 

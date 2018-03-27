@@ -1,4 +1,4 @@
-function removeTran(index) {
+function removeTran(event) {
     var http_method = "POST";
     var isAsynchr = true;
     var request = "/remove";
@@ -9,7 +9,7 @@ function removeTran(index) {
     Get data
      */
     var table = document.getElementById("list_frame-0");
-    var row = table.rows[index];
+    var row = table.rows[this.index];
     var type = row.cells[0].innerHTML;
     type = type.toLowerCase();
     var date = row.cells[2].innerHTML;
@@ -31,13 +31,13 @@ function removeTran(index) {
     /*
     Send request
      */
-    // xhr.open(http_method, request, isAsynchr);
-    // xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    // if (xhr.readyState === 1) {
-    //     xhr.send(data);
-    // }else{
-    //     alert("readyState != 1");
-    // }
+    xhr.open(http_method, request, isAsynchr);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    if (xhr.readyState === 1) {
+        xhr.send(data);
+    }else{
+        alert("readyState != 1");
+    }
 
     // xhr.onreadystatechange = function () {
     //     if (this.readyState === 4 && this.status === 200) {

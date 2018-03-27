@@ -13,15 +13,15 @@
             <form id="showTrans_frame-0"></form>
             <div class="select_frame-0 frame-0_a">
                 <select form="showTrans_frame-0">
-                    <option value="type0" selected>All</option>
-                    <option value="type1">Expense</option>
-                    <option value="type2">Income</option>
+                    <option value="type0" name="option_frame-0" selected>All</option>
+                    <option value="type1" name="option_frame-0">Expense</option>
+                    <option value="type2" name="option_frame-0">Income</option>
                 </select>
             </div>
 
             <div class="textarea_frame-0 frame-0_a">
                 <div>
-                    <textarea id="textarea_frame-0" placeholder="description"></textarea>
+                    <textarea id="description_frame-0" placeholder="description"></textarea>
                 </div>
             </div>
 
@@ -36,105 +36,32 @@
                     <input placeholder="year" class="date_frame-0" type="number" name="year" id="year_frame-0" min="2000" max="2018" form="showTrans_frame-0"/>
                 </div>
             </div>
+
+            <div id="div-button_showTrans_frame-0" class="div-button_showTrans_frame-0">
+                <input type="button" class="buttonShowTrans_frame-0" id="buttonShowTrans_frame-0" form="showTrans_frame-0" onclick="ripple(); loadTrans('showTrans_frame-0')">
+                <script type="text/javascript">
+                    function ripple() {
+                        var elm = document.getElementById("div-table");
+                        elm.style.animation = "ripple-list 1s";
+                        var newone = elm.cloneNode(true);
+                        elm.parentNode.replaceChild(newone, elm);
+
+                        elm = document.getElementById("buttonShowTrans_frame-0");
+                        elm.style.animation = "hideElement .5s";
+                        newone = elm.cloneNode(true);
+                        elm.parentNode.replaceChild(newone, elm);
+                    }
+                </script>
+            </div>
         </div>
         <div class="div-table" id="div-table">
+            <div class="div-Wait" id="div-Wait">Wait...</div>
             <table id="list_frame-0" class="list">
-                <tr id="tr-0" class="tr-list_th">
+                <tr class="tr-list-th">
                     <th class="th-list">Type</th>
                     <th class="th-list">Sum</th>
                     <th class="th-list">Date</th>
                     <th class="th-list">Description</th>
-                </tr>
-                <tr class="tr-list">
-                    <td class="td-list">Expense</td>
-                    <td class="td-list">1000 UAH</td>
-                    <td class="td-list">12-03-2018 12:12:12</td>
-                    <td class="td-list">TESTS-TEST</td>
-                    <td class="td-button"><button class="rem" id="button-1" onclick="removeTran(1);"></button></td>
-                </tr>
-                <tr class="tr-list">
-                    <td class="td-list">Income</td>
-                    <td class="td-list">1000 UAH</td>
-                    <td class="td-list">12-03-2018 12:12:12</td>
-                    <td class="td-list">TESTS-TEST</td>
-                    <td class="td-button"><button class="rem" id="button-2" onclick="removeTran(2);"></button></td>
-                </tr>
-                <tr class="tr-list">
-                    <td class="td-list">Income</td>
-                    <td class="td-list">1000 UAH</td>
-                    <td class="td-list">12-03-2018 12:12:12</td>
-                    <td class="td-list">TESTS-TEST</td>
-                    <td class="td-button"><button class="rem" id="button-3" onclick="removeTran(3);"></button></td>
-                </tr>
-                <tr class="tr-list">
-                    <td class="td-list">Income</td>
-                    <td class="td-list">1000 UAH</td>
-                    <td class="td-list">12-03-2018 12:12:12</td>
-                    <td class="td-list">TESTS-TEST</td>
-                    <td class="td-button"><button class="rem" id="button-4" onclick="removeTran(4);"></button></td>
-                </tr>
-                <tr class="tr-list">
-                    <td class="td-list">Income</td>
-                    <td class="td-list">1000 UAH</td>
-                    <td class="td-list">12-03-2018 12:12:12</td>
-                    <td class="td-list">TESTS-TEST</td>
-                    <td class="td-button"><button class="rem" id="button-5" onclick="removeTran(5);"></button></td>
-                </tr>
-                <tr class="tr-list">
-                    <td class="td-list">Income</td>
-                    <td class="td-list">1000 UAH</td>
-                    <td class="td-list">12-03-2018 12:12:12</td>
-                    <td class="td-list">TESTS-TEST</td>
-                    <td class="td-button"><button class="rem" id="button-6" onclick="removeTran(6);"></button></td>
-                </tr>
-                <tr class="tr-list">
-                    <td class="td-list">Income</td>
-                    <td class="td-list">1000 UAH</td>
-                    <td class="td-list">12-03-2018 12:12:12</td>
-                    <td class="td-list">TESTS-TEST</td>
-                    <td class="td-button"><button class="rem" id="button-7" onclick="removeTran(7);"></button></td>
-                </tr>
-                <tr class="tr-list">
-                    <td class="td-list">Income</td>
-                    <td class="td-list">1000 UAH</td>
-                    <td class="td-list">12-03-2018 12:12:12</td>
-                    <td class="td-list">TESTS-TEST</td>
-                    <td class="td-button"><button class="rem" id="button-8" onclick="removeTran(8);"></button></td>
-                </tr>
-                <tr class="tr-list">
-                    <td class="td-list">Income</td>
-                    <td class="td-list">1000 UAH</td>
-                    <td class="td-list">12-03-2018 12:12:12</td>
-                    <td class="td-list">TESTS-TEST</td>
-                    <td class="td-button"><button class="rem" id="button-9" onclick="removeTran(9);"></button></td>
-                </tr>
-                <tr class="tr-list">
-                    <td class="td-list">Income</td>
-                    <td class="td-list">1000 UAH</td>
-                    <td class="td-list">12-03-2018 12:12:12</td>
-                    <td class="td-list">TESTS-TEST</td>
-                    <td class="td-button"><button class="rem" id="button-10" onclick="removeTran(10);"></button></td>
-                </tr>
-                <tr class="tr-list">
-                    <td class="td-list">Income</td>
-                    <td class="td-list">1000 UAH</td>
-                    <td class="td-list">12-03-2018 12:12:12</td>
-                    <td class="td-list">TESTS-TEST</td>
-                    <td class="td-button"><button class="rem" id="button-11" onclick="removeTran(11);"></button></td>
-                </tr>
-                <tr class="tr-list">
-                    <td class="td-list">Income</td>
-                    <td class="td-list">1000 UAH</td>
-                    <td class="td-list">12-03-2018 12:12:12</td>
-                    <td class="td-list">TESTS-TEST</td>
-                    <td class="td-button"><button class="rem" id="button-12" onclick="removeTran(12);"></button></td>
-                </tr>
-                <tr class="tr-list">
-                    <td class="td-list">Income</td>
-                    <td class="td-list">1000 UAH</td>
-                    <td class="td-list">12-03-2018 12:12:12</td>
-                    <td class="td-list">TESTS-TEST</td>
-                    <td class="td-button"><button class="rem" id="button-13" onclick="removeTran(13);"></button></td>
                 </tr>
             </table>
             <div class="cap-table"></div>

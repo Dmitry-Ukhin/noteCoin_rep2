@@ -19,38 +19,67 @@
 /*########
 Type of Transactions
 ##########*/
-.b{
-    font-family: 'Josefin Sans', sans-serif;
-    position: relative;
-    left: 24%;
-    margin-top: -15%;
-    display: inline-block;
-}
+/*.b{*/
+    /*font-family: 'Josefin Sans', sans-serif;*/
+    /*position: relative;*/
+    /*left: 24%;*/
+    /*margin-top: -15%;*/
+    /*display: inline-block;*/
+/*}*/
 
 .div-show-a{
     position: relative;
-    margin-left: -40px;
-}
-
-.div-type-show{
-    top: 30px;
-}
-
-.div-type-show label{
-    background: #bfb52b !important;
-}
-
-#typeTran_show{
-    visibility: hidden;
-}
-
-.h4-show-left{
     top: 10px;
+    margin-left: 60px;
 }
 
-.h4-show-right{
-    top: -20px;
-    left: 44px;
+/*.div-type-show{*/
+    /*top: 30px;*/
+/*}*/
+
+/*.div-type-show label{*/
+    /*background: #bfb52b !important;*/
+/*}*/
+
+/*#typeTran-show{*/
+    /*visibility: hidden;*/
+/*}*/
+
+/*.h4-show-left{*/
+    /*top: 10px;*/
+/*}*/
+
+/*.h4-show-right{*/
+    /*top: -20px;*/
+    /*left: 44px;*/
+/*}*/
+
+.select-show{
+    position: relative;
+    left: 20px;
+}
+
+.select-show select{
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 18px;
+    outline: none;
+
+    width: 150px;
+    height: 30px;
+    padding-top: 3px;
+    padding-left: 10px;
+
+    border: 0;
+    border-radius: 20px;
+
+    -webkit-appearance: none;
+    background: rgba(202, 192, 45, 0.39) url("../resources/ic_keyboard_arrow_down_black_18dp_1x.png") 96% / 15%  no-repeat ;
+    transition: all 0.3s cubic-bezier(.64,.09,.08,1);
+}
+
+.select-show select:hover{
+    background: rgb(202, 192, 45) url("../resources/ic_keyboard_arrow_down_black_18dp_1x.png") 96% / 15%  no-repeat ;
+    transition: all 0.3s cubic-bezier(.64,.09,.08,1);
 }
 
 /*############
@@ -83,12 +112,12 @@ Form of date
     color: #356ec8;
 }
 
-#day:focus, #month:focus, #year:focus{
+#day-show:focus, #month-show:focus, #year-show:focus{
     width: 120px;
     transition: all 0.3s cubic-bezier(.64,.09,.08,1);
 }
 
-#day:invalid, #month:invalid, #year:invalid{
+#day-show:invalid, #month-show:invalid, #year-show:invalid{
     color: #bf0000;
     border-bottom: 2px solid #bf0000 !important;
 }
