@@ -17,7 +17,7 @@
 	<groupId>noteCoin</groupId>
 	<artifactId>noteCoin</artifactId>
 	<packaging>war</packaging>
-	<version>noteCoin-0.2.1_pre-alpha</version>
+	<version>noteCoin-1.0_PRE-ALPHA</version>
 
 	<dependencies>
 		<dependency>

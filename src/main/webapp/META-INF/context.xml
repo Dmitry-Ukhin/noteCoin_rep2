@@ -1,6 +1,0 @@
-<?xml version = "1.0" encoding = "UTF-8"?>
-<Context path="/noteCoin-0.2.1_pre-alpha">
-    <Resourses className="org.apache.naming.resources.VirtualDirContext"
-    extraResourcesPaths="/resources=/noteCoin-0.2.1_pre-alpha/resources, /template=noteCoin-0.2.1_pre-alpha/pages/template
-    /scripts=noteCoin-0.2.1_pre-alpha/scripts, /styles=noteCoin-0.2.1_pre-alpha/styles"/>
-</Context>

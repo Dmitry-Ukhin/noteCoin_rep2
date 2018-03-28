@@ -4,7 +4,7 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" version="2.5">
 	<display-name>noteCoin</display-name>
 	<welcome-file-list>
-		<welcome-file>pages/newIndex.html</welcome-file>
+		<welcome-file>pages/index.html</welcome-file>
 	</welcome-file-list>
 
 	<servlet>
@@ -40,25 +40,4 @@
         <servlet-name>remove</servlet-name>
         <url-pattern>/remove</url-pattern>
     </servlet-mapping>
-
-	<!--<servlet>-->
-		<!--<servlet-name>default</servlet-name>-->
-		<!--<servlet-class>-->
-			<!--org.apache.catalina.servlets.DefaultServlet-->
-		<!--</servlet-class>-->
-		<!--&lt;!&ndash;<init-param>&ndash;&gt;-->
-			<!--&lt;!&ndash;<param-name>debug</param-name>&ndash;&gt;-->
-			<!--&lt;!&ndash;<param-value>0</param-value>&ndash;&gt;-->
-		<!--&lt;!&ndash;</init-param>&ndash;&gt;-->
-		<!--<init-param>-->
-			<!--<param-name>listings</param-name>-->
-			<!--<param-value>false</param-value>-->
-		<!--</init-param>-->
-		<!--<load-on-startup>1</load-on-startup>-->
-	<!--</servlet>-->
-
-	<!--<servlet-mapping>-->
-		<!--<servlet-name>default</servlet-name>-->
-		<!--<url-pattern>/</url-pattern>-->
-	<!--</servlet-mapping>-->
 </web-app>
