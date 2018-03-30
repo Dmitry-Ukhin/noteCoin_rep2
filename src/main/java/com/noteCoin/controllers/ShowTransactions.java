@@ -4,8 +4,9 @@
 package com.noteCoin.controllers;
 
 import com.google.gson.Gson;
-import com.noteCoin.data.WorkWithDB;
-import com.noteCoin.data.WorkWithMySQL;
+import com.noteCoin.data.WorkWith_DB;
+import com.noteCoin.data.WorkWith_HerokuPostgresQL;
+import com.noteCoin.data.WorkWith_MySQL;
 import com.noteCoin.models.Transaction;
 
 import javax.servlet.ServletException;
@@ -13,7 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 public class ShowTransactions extends HttpServlet{
@@ -102,15 +102,33 @@ public class ShowTransactions extends HttpServlet{
         Gson gson = new Gson();
         String json;
 
-        WorkWithDB dataBase = new WorkWithMySQL();
-        List<Transaction> transactionList = dataBase.loadFromDB(requestToDB);
-        if (transactionList != null) {
-            for (Transaction tr : transactionList) {
-                json = gson.toJson(tr);
-                resp.getWriter().printf(json);
+        if (req.getRequestURL().toString().contains("heroku")){
+            WorkWith_DB dataBase = new WorkWith_HerokuPostgresQL();
+            List<Transaction> transactionList = dataBase.loadFromDB(requestToDB);
+
+            Integer debugStatus = dataBase.getDebugStatus();
+            String debugString = dataBase.getDebugString();
+
+            if (transactionList != null) {
+                for (Transaction tr : transactionList) {
+                    json = gson.toJson(tr);
+                    resp.getWriter().printf(json);
+                }
+//                resp.getWriter().println("debugStatus=" + debugStatus + "&&debugString=" + debugString);
+            } else {
+                resp.getWriter().println("Download is fail");
             }
-        }else{
-            resp.getWriter().println("Download is fail");
+        }else {
+            WorkWith_DB dataBase = new WorkWith_MySQL();
+            List<Transaction> transactionList = dataBase.loadFromDB(requestToDB);
+            if (transactionList != null) {
+                for (Transaction tr : transactionList) {
+                    json = gson.toJson(tr);
+                    resp.getWriter().printf(json);
+                }
+            } else {
+                resp.getWriter().println("Download is fail");
+            }
         }
     }
 }

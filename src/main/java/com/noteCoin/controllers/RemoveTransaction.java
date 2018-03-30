@@ -3,8 +3,9 @@
  */
 package com.noteCoin.controllers;
 
-import com.noteCoin.data.WorkWithDB;
-import com.noteCoin.data.WorkWithMySQL;
+import com.noteCoin.data.WorkWith_DB;
+import com.noteCoin.data.WorkWith_HerokuPostgresQL;
+import com.noteCoin.data.WorkWith_MySQL;
 import com.noteCoin.models.Transaction;
 
 import javax.servlet.ServletException;
@@ -12,10 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class RemoveTransaction extends HttpServlet{
@@ -33,11 +31,18 @@ public class RemoveTransaction extends HttpServlet{
         requestToDB += "descr LIKE \'" + descr + "\'";
         System.out.println("REQUEST:" + requestToDB);
 
-        WorkWithDB dataBase = new WorkWithMySQL();
-        List<Transaction> transactions = dataBase.loadFromDB(requestToDB);
-        dataBase.reloadConnectWithDB();
-        System.out.println(transactions.toString());
-        Integer status = dataBase.removeTransaction(transactions.get(0));
+        Integer status;
+        if (req.getRequestURL().toString().contains("heroku")){
+            WorkWith_DB dataBase = new WorkWith_HerokuPostgresQL();
+            List<Transaction> transactions = dataBase.loadFromDB(requestToDB);
+            dataBase.reloadConnectWithDB();
+            status = dataBase.removeTransaction(transactions.get(0));
+        }else {
+            WorkWith_DB dataBase = new WorkWith_MySQL();
+            List<Transaction> transactions = dataBase.loadFromDB(requestToDB);
+            dataBase.reloadConnectWithDB();
+            status = dataBase.removeTransaction(transactions.get(0));
+        }
         if (status == 1){
             resp.getWriter().println("success");
         }else{

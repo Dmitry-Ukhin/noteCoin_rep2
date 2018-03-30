@@ -1,0 +1,91 @@
+Map<String,String> jdbcUrlSettings = new HashMap<String, String>();
+        String jdbcDbUrl = System.getenv("JDBC_DATABASE_URL");
+        if (null != jdbcDbUrl) {
+            jdbcUrlSettings.put("hibernate.connection.url", System.getenv("JDBC_DATABASE_URL"));
+        }
+
+        ServiceRegistry registry = new StandardServiceRegistryBuilder().
+                configure("hibernate.cfg.xml").
+                applySettings(jdbcUrlSettings).
+                build();
+
+        Configuration configuration = new Configuration().configure();
+        SessionFactory sessionFactory = configuration.buildSessionFactory(registry);
+
+        session = sessionFactory.openSession();
+
+
+
+
+Integer status;
+
+        Transaction tr = session.getTransaction();
+        tr.begin();
+        try {
+            session.save(transaction);
+            status = 1;
+        }catch (Exception ex){
+            tr.rollback();
+            status = 0;
+        }finally {
+            session.close();
+        }
+        return status;
+
+
+
+
+
+try {
+            Query query = session.createQuery(requestToDB);
+            List list = query.list();
+            List<com.noteCoin.models.Transaction> transactionList = new ArrayList<com.noteCoin.models.Transaction>();
+            for (Object obj : list){
+                com.noteCoin.models.Transaction tr = (com.noteCoin.models.Transaction)obj;
+                transactionList.add(tr);
+            }
+            return transactionList;
+        }catch (Exception ex){
+            ex.printStackTrace();
+            return null;
+        }finally {
+            session.close();
+        }
+
+
+
+
+
+try {
+            Query query = session.createQuery(requestToDB);
+            query.setMaxResults(maxResults);
+            List list = query.list();
+            List<com.noteCoin.models.Transaction> transactionList = new ArrayList<com.noteCoin.models.Transaction>();
+            for (Object obj : list){
+                com.noteCoin.models.Transaction tr = (com.noteCoin.models.Transaction)obj;
+                transactionList.add(tr);
+            }
+            return transactionList;
+        }catch (Exception ex){
+            ex.printStackTrace();
+            return null;
+        }finally {
+            session.close();
+        }
+
+
+
+
+Integer status;
+        Long transactionId = transaction.getId();
+
+        Transaction tr = session.getTransaction();
+        tr.begin();
+        try{
+            com.noteCoin.models.Transaction tran = session.load(com.noteCoin.models.Transaction.class, transactionId);
+            status = 1;
+        }catch (Exception ex){
+            tr.rollback();
+            status = 0;
+        }
+        return status;

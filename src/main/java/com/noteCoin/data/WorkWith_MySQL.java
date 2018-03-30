@@ -12,20 +12,21 @@ import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
-import static javax.swing.text.html.HTML.Tag.HEAD;
+public class WorkWith_MySQL implements WorkWith_DB {
 
-public class WorkWithMySQL implements WorkWithDB{
+    private Integer debugStatus;
+    private String debugString;
 
     private EntityManagerFactory emf;
-    private EntityManager em;
 
-    public WorkWithMySQL() {
-        emf = Persistence.createEntityManagerFactory("noteCoinDB");
+    private EntityManager em;
+    public WorkWith_MySQL() {
+        emf = Persistence.createEntityManagerFactory("noteCoin_MySQL");
         em = emf.createEntityManager();
     }
 
     public void reloadConnectWithDB() {
-        emf = Persistence.createEntityManagerFactory("noteCoinDB");
+        emf = Persistence.createEntityManagerFactory("noteCoin_MySQL");
         em = emf.createEntityManager();
     }
 
@@ -112,5 +113,13 @@ public class WorkWithMySQL implements WorkWithDB{
             emf.close();
         }
         return status;
+    }
+
+    public Integer getDebugStatus() {
+        return debugStatus;
+    }
+
+    public String getDebugString() {
+        return debugString;
     }
 }

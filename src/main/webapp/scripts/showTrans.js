@@ -117,7 +117,7 @@ function insertResp(resp) {
     /*
     Insert Transactions to table
      */
-    for (i = 1; start < resp.length ; i++) {
+    for (i = 1; start < resp.length; i++) {
 
         end = resp.indexOf("}", start) + 1;
         transaction = resp.substring(start, end);

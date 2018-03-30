@@ -4,8 +4,9 @@
 package com.noteCoin.controllers;
 
 import com.noteCoin.data.FactoryTransaction;
-import com.noteCoin.data.WorkWithDB;
-import com.noteCoin.data.WorkWithMySQL;
+import com.noteCoin.data.WorkWith_DB;
+import com.noteCoin.data.WorkWith_HerokuPostgresQL;
+import com.noteCoin.data.WorkWith_MySQL;
 import com.noteCoin.models.Transaction;
 
 import javax.servlet.ServletException;
@@ -45,11 +46,27 @@ public class SaveTransaction extends HttpServlet{
         /*
         Send transaction to data base
          */
-        WorkWithDB dataBase = new WorkWithMySQL();
-        Integer status = dataBase.saveToDB(transaction);
+        Integer status;
+        Integer debugStatus = null;
+        String debugString = null;
+        String dbName;
+        if(req.getRequestURL().toString().contains("heroku")){
+            WorkWith_DB dataBase = new WorkWith_HerokuPostgresQL();
+
+            debugStatus = dataBase.getDebugStatus();
+            debugString = dataBase.getDebugString();
+
+            status = dataBase.saveToDB(transaction);
+            dbName = "heroku";
+        }else {
+            WorkWith_DB dataBase = new WorkWith_MySQL();
+            status = dataBase.saveToDB(transaction);
+            dbName = "mySQL";
+        }
 
         if (status != 1){
-            writer.println("Failed, try again");
+            writer.println("Failed, try again///dbName=" + dbName + "&&debugStatus=" + debugStatus +
+                    "&&debugString=" + debugString);
         }else{
             writer.println("success");
         }
