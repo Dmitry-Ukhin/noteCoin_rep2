@@ -54,9 +54,9 @@ function SaveTran() {
     /*
     Get response and change DOM
      */
-    // xhr.onreadystatechange = function () {
-    //     if (this.readyState === 4 && this.status === 200) {
-    //         document.getElementById("p1").innerHTML = this.responseText;
-    //     }
-    // };
+    xhr.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            document.getElementById("p1").innerHTML = this.responseText;
+        }
+    };
 }

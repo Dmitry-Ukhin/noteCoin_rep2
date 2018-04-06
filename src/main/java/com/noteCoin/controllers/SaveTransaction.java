@@ -3,10 +3,9 @@
  */
 package com.noteCoin.controllers;
 
-import com.noteCoin.data.FactoryTransaction;
-import com.noteCoin.data.WorkWith_DB;
-import com.noteCoin.data.WorkWith_HerokuPostgresQL;
-import com.noteCoin.data.WorkWith_MySQL;
+import com.noteCoin.data.*;
+import com.noteCoin.data.dao.TransactionDAO;
+import com.noteCoin.data.factories.TransactionFactory;
 import com.noteCoin.models.Transaction;
 
 import javax.servlet.ServletException;
@@ -40,35 +39,17 @@ public class SaveTransaction extends HttpServlet{
         /*
         Create transaction
          */
-        FactoryTransaction factoryTransaction = new FactoryTransaction();
-        Transaction transaction = factoryTransaction.createTransaction(listArgs);
+        TransactionFactory transactionFactory = new TransactionFactory();
+        Transaction transaction = transactionFactory.createTransaction(listArgs);
 
         /*
         Send transaction to data base
          */
-        Integer status;
-        Integer debugStatus = null;
-        String debugString = null;
-        String dbName;
-        if(req.getRequestURL().toString().contains("heroku")){
-            WorkWith_DB dataBase = new WorkWith_HerokuPostgresQL();
-
-            debugStatus = dataBase.getDebugStatus();
-            debugString = dataBase.getDebugString();
-
-            status = dataBase.saveToDB(transaction);
-            dbName = "heroku";
-        }else {
-            WorkWith_DB dataBase = new WorkWith_MySQL();
-            status = dataBase.saveToDB(transaction);
-            dbName = "mySQL";
-        }
-
-        if (status != 1){
-            writer.println("Failed, try again///dbName=" + dbName + "&&debugStatus=" + debugStatus +
-                    "&&debugString=" + debugString);
-        }else{
+        TransactionDAO transactionDAO = new TransactionDAOHibernate();
+        if (transactionDAO.save(transaction)){
             writer.println("success");
+        }else{
+            writer.println("Failed, try again");
         }
     }
 }

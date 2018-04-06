@@ -3,18 +3,20 @@
  */
 package com.noteCoin.controllers;
 
-import com.noteCoin.data.WorkWith_DB;
-import com.noteCoin.data.WorkWith_HerokuPostgresQL;
-import com.noteCoin.data.WorkWith_MySQL;
+import com.noteCoin.data.dao.TransactionDAO;
+import com.noteCoin.data.TransactionDAOHibernate;
 import com.noteCoin.models.Transaction;
 
+import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RemoveTransaction extends HttpServlet{
     @Override
@@ -26,27 +28,29 @@ public class RemoveTransaction extends HttpServlet{
         date = getDate(req.getParameter("date"));
         descr = req.getParameter("description");
 
-        requestToDB += "type LIKE \'" + type + "\' AND ";
-        requestToDB += "date LIKE \'" + date + "\' AND ";
-        requestToDB += "descr LIKE \'" + descr + "\'";
-        System.out.println("REQUEST:" + requestToDB);
+        Map<String, String> args = new HashMap<String, String>();
+        args.put("type", type);
+        args.put("date", date);
+        args.put("descr", descr);
 
-        Integer status;
-        if (req.getRequestURL().toString().contains("heroku")){
-            WorkWith_DB dataBase = new WorkWith_HerokuPostgresQL();
-            List<Transaction> transactions = dataBase.loadFromDB(requestToDB);
-            dataBase.reloadConnectWithDB();
-            status = dataBase.removeTransaction(transactions.get(0));
-        }else {
-            WorkWith_DB dataBase = new WorkWith_MySQL();
-            List<Transaction> transactions = dataBase.loadFromDB(requestToDB);
-            dataBase.reloadConnectWithDB();
-            status = dataBase.removeTransaction(transactions.get(0));
+        String query = "From Transaction ";
+        query = query.concat("WHERE ");
+        for (String key : args.keySet()) {
+            query = query.concat(key + " LIKE \'" + args.get(key) + "%\' AND ");
         }
-        if (status == 1){
+        Integer lastIndexOf = query.lastIndexOf("AND");
+        if (lastIndexOf < query.length() - 3) {
+            query = query.substring(0, lastIndexOf);
+        }
+        query = query.concat("ORDER BY date DESC");
+
+        TransactionDAO transactionDAO = new TransactionDAOHibernate();
+        List<Transaction> list = transactionDAO.getList(query);
+
+        if (transactionDAO.remove(list.get(0))){
             resp.getWriter().println("success");
         }else{
-            resp.getWriter().println("removing is fail");
+            resp.getWriter().println("Remove is failed");
         }
     }
 

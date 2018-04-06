@@ -13,7 +13,7 @@ import java.util.Date;
 public class Transaction{
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator="id_generator")
-	@SequenceGenerator(name="id_generator", sequenceName = "tran_id", allocationSize = 10000)
+	@SequenceGenerator(name="id_generator", sequenceName = "tran_id")
 	@Column(name = "id")
 	private Long id;
 
@@ -30,13 +30,21 @@ public class Transaction{
 	@Column(name = "description")
 	private String descr;
 
+	@Column(name = "user_id")
+	private Long user_id;
+
 	public Transaction() { }
 
 	public Transaction(String type, Integer sum, Date date, String descr){
+		this(type, sum, date, descr, null);
+	}
+
+	public Transaction(String type, Integer sum, Date date, String descr, Long user_id){
 		this.type = type;
 		this.sum = sum;
 		this.date = date;
 		this.descr = descr;
+		this.user_id = user_id;
 	}
 
 	public Long getId(){
@@ -57,6 +65,10 @@ public class Transaction{
 
 	public String getDescr() {
 		return descr;
+	}
+
+	public Long getUser_id() {
+		return user_id;
 	}
 
 	@Override

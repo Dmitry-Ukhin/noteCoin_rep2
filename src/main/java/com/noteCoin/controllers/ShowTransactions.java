@@ -3,18 +3,20 @@
  */
 package com.noteCoin.controllers;
 
-import com.google.gson.Gson;
-import com.noteCoin.data.WorkWith_DB;
-import com.noteCoin.data.WorkWith_HerokuPostgresQL;
-import com.noteCoin.data.WorkWith_MySQL;
+import com.noteCoin.data.dao.TransactionDAO;
+import com.noteCoin.data.TransactionDAOHibernate;
 import com.noteCoin.models.Transaction;
+import com.noteCoin.tools.ToJSON;
 
+import javax.persistence.Query;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ShowTransactions extends HttpServlet{
     @Override
@@ -22,10 +24,6 @@ public class ShowTransactions extends HttpServlet{
         String type,
                date,
                descr;
-        Boolean haveType=false,
-                haveDate=false,
-                haveDescr=false;
-        String requestToDB = "FROM Transaction AS Tr WHERE ";
 
         /*
         Get arguments from request
@@ -33,102 +31,49 @@ public class ShowTransactions extends HttpServlet{
         type = req.getParameter("type");
         type = type.toLowerCase();
         if (type.equals("all") || type.equals("undefined")){
-            type = null;
+            type = "%";
         }
         date = req.getParameter("date");
         if (date.equals("undefined-undefined-undefined")){
-            date = null;
+            date = "%-%-%";
         } else if(date.contains("undefined")){
-            date = date.replaceAll("none", "%");
+            date = date.replaceAll("undefinded", "%");
         }
         descr = req.getParameter("description");
         if (descr.equals("")){
-            descr = null;
-        }
-        /*
-        We have arguments?
-         */
-        Integer deleteWhere = 0;
-        if (type != null){
-            haveType = true;
-        }else{
-            deleteWhere--;
-        }
-        if (date != null){
-            haveDate = true;
-        }else{
-            deleteWhere--;
-        }
-        if (descr != null){
-            haveDescr = true;
-        }else{
-            deleteWhere--;
+            descr = "%";
         }
 
+        Map<String, String> args = new HashMap<String, String>();
+        args.put("type", type);
+        args.put("date", date);
+        args.put("descr", descr);
 
-        /*
-        Build request to DataBase
-         */
-        if (haveType == true){
-            requestToDB += "Tr.type LIKE \'" +type+ "%\' AND ";
-        }
-        if (haveDate == true){
-            requestToDB += "Tr.date LIKE \'" +date+ "%\' AND ";
-            if (requestToDB.contains("%%")){
-                requestToDB = requestToDB.replaceAll("%%", "%");
-            }
-        }
-        if (haveDescr == true){
-            requestToDB += "Tr.descr LIKE \'" +descr+ "%\'";
-        }else{
-            if (requestToDB.contains("AND")) {
-                int startIndex = 0;
-                int lastIndex = requestToDB.lastIndexOf("AND");
-                requestToDB = requestToDB.substring(startIndex, lastIndex);
-            }
-        }
 
-        if (deleteWhere == -3){
-            int startIndex = 0;
-            int lastIndex = requestToDB.lastIndexOf("WHERE");
-            requestToDB = requestToDB.substring(startIndex, lastIndex);
+        String query = "From Transaction ";
+        query = query.concat("WHERE ");
+        for (String key : args.keySet()) {
+            query = query.concat(key + " LIKE \'" + args.get(key) + "%\' AND ");
         }
-
-        requestToDB += " ORDER BY date DESC";
+        Integer lastIndexOf = query.lastIndexOf("AND");
+        if (lastIndexOf < query.length() - 3) {
+            query = query.substring(0, lastIndexOf);
+        }
+        query = query.concat("ORDER BY date DESC");
 
         /*
         Get data from data base
          */
-        Gson gson = new Gson();
-        String json;
 
-        if (req.getRequestURL().toString().contains("heroku")){
-            WorkWith_DB dataBase = new WorkWith_HerokuPostgresQL();
-            List<Transaction> transactionList = dataBase.loadFromDB(requestToDB);
+        TransactionDAO transactionDAO = new TransactionDAOHibernate();
+        List<Transaction> transactionList = transactionDAO.getList(query);
 
-            Integer debugStatus = dataBase.getDebugStatus();
-            String debugString = dataBase.getDebugString();
-
-            if (transactionList != null) {
-                for (Transaction tr : transactionList) {
-                    json = gson.toJson(tr);
-                    resp.getWriter().printf(json);
-                }
-//                resp.getWriter().println("debugStatus=" + debugStatus + "&&debugString=" + debugString);
-            } else {
-                resp.getWriter().println("Download is fail");
+        if (transactionList != null) {
+            for (Transaction tr : transactionList) {
+                resp.getWriter().printf(ToJSON.convert(tr));
             }
-        }else {
-            WorkWith_DB dataBase = new WorkWith_MySQL();
-            List<Transaction> transactionList = dataBase.loadFromDB(requestToDB);
-            if (transactionList != null) {
-                for (Transaction tr : transactionList) {
-                    json = gson.toJson(tr);
-                    resp.getWriter().printf(json);
-                }
-            } else {
-                resp.getWriter().println("Download is fail");
-            }
+        } else {
+            resp.getWriter().println("Download is fail");
         }
     }
 }
